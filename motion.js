@@ -76,22 +76,24 @@
   }
 
   function sync() {
-    enabled = userEnabled && !preference.matches && finePointer.matches;
+    // Ambient light works on touch too; cursor/canvas work remains desktop-only.
+    enabled = userEnabled && !preference.matches;
     root.classList.toggle('motion-enabled',enabled);
     root.classList.toggle('motion-paused',!enabled);
-    toggle.textContent = preference.matches ? 'Motion reduced' : !finePointer.matches ? 'Touch mode' : enabled ? 'Motion on' : 'Motion off';
-    toggle.disabled = preference.matches || !finePointer.matches;
+    root.classList.toggle('background-paused',document.hidden);
+    toggle.textContent = preference.matches ? 'Motion reduced' : enabled ? 'Motion on' : 'Motion off';
+    toggle.disabled = preference.matches;
     toggle.setAttribute('aria-pressed',String(enabled));
     cancelAnimationFrame(frame);frame = 0;
     cancelAnimationFrame(pointerFrame);pointerFrame = 0;
-    if (!enabled) {
+    if (!enabled || !finePointer.matches) {
       resetSurface();root.classList.remove('pointer-present');
       if (context) context.clearRect(0,0,width,height);
     } else if (!document.hidden && context) {lastTime = 0;frame = requestAnimationFrame(draw);}
   }
 
   document.addEventListener('pointermove',event => {
-    if (!enabled || event.pointerType === 'touch') return;
+    if (!enabled || !finePointer.matches || event.pointerType === 'touch') return;
     pointer.x = event.clientX;pointer.y = event.clientY;
     const candidate = event.target instanceof Element ? event.target.closest('.interest-card, .discovery-card, .search-box, .nav-link, .primary-button, .save-button') : null;
     if (surface !== candidate) {resetSurface();surface = candidate;}
