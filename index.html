@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101410">
+  <meta name="description" content="HobbyQuest — a little curiosity can take you anywhere. Explore your interests and build your personal atlas.">
+  <title>HobbyQuest · Your curiosity atlas</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="HobbyQuest home"><span class="brand-mark" aria-hidden="true">✳</span> HobbyQuest<span class="brand-dot">.</span></a>
+      <p class="sidebar-label">YOUR CURIOSITY ATLAS</p>
+      <nav aria-label="Main navigation">
+        <button class="nav-link active" data-view="discover"><span aria-hidden="true">◈</span> Discover <span class="nav-arrow" aria-hidden="true">↗</span></button>
+        <button class="nav-link" data-view="atlas"><span aria-hidden="true">◎</span> My atlas <span class="count" id="saved-count">0</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="daily-note"><span class="tiny-star" aria-hidden="true">✦</span><p>You don’t need a new passion.<br>Just a little curiosity.</p></div>
+        <div class="guest"><span class="guest-avatar" aria-hidden="true">G</span><div>Exploring as a guest<small>Your atlas stays in this browser</small></div></div>
+      </div>
+    </aside>
+    <main id="main-content">
+      <header class="topbar"><span class="edition">A SPACE FOR THE CURIOUS</span><span class="preview-pill"><span aria-hidden="true"></span> Day 1 preview</span></header>
+      <section id="discover-view" aria-labelledby="hero-title">
+        <div class="hero">
+          <div class="hero-copy"><p class="eyebrow"><span aria-hidden="true">✦</span> FOLLOW THE THINGS THAT MAKE YOU WONDER</p><h1 id="hero-title">The world is full<br>of <em>your next thing.</em></h1><p class="hero-description">A passing thought. A fascinating rabbit hole. A whole new interest.<br class="desktop-break"> Wherever your curiosity starts, make a little space for it.</p></div>
+          <div class="orbit-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="orbit-center">✳</span><span class="orbit-point point-one"></span><span class="orbit-point point-two"></span><span class="orbit-point point-three"></span><span class="orbit-caption">THERE’S MORE OUT THERE</span></div>
+        </div>
+        <form id="topic-form" class="search-box"><label for="topic-input" class="sr-only">What are you curious about?</label><span class="search-symbol" aria-hidden="true">⌕</span><input id="topic-input" name="topic" placeholder="What are you curious about? Anything goes." maxlength="100" required autocomplete="off"><button type="submit">Let’s explore <span aria-hidden="true">↗</span></button></form>
+        <div class="search-under"><span>From black holes to breadmaking. No boxes to fit into.</span><button id="surprise-button" class="text-button">Surprise me <span aria-hidden="true">↗</span></button></div>
+        <div class="section-heading"><div><p class="eyebrow">A FEW PLACES TO BEGIN</p><h2>Something might spark.</h2></div><span class="muted section-aside">Pick a door. See where it leads.</span></div>
+        <div class="interest-grid" id="interest-grid"></div>
+        <div class="bottom-note"><span aria-hidden="true">✧</span><p>Collect questions, not just answers.<small>Every interest gets a space of its own.</small></p><span class="note-line" aria-hidden="true"></span><span class="note-number" aria-hidden="true">01 / ∞</span></div>
+      </section>
+      <section id="atlas-view" aria-labelledby="atlas-title" hidden><p class="eyebrow atlas-eyebrow">YOUR PERSONAL CONSTELLATION</p><h1 id="atlas-title" class="atlas-title">A little more <em>you.</em></h1><p class="hero-description">Your saved interests. Your questions. A place to pick up where you left off.</p><div id="atlas-grid" class="interest-grid"></div><div id="empty-atlas" class="empty-atlas"><span aria-hidden="true">◎</span><h2>Your atlas starts with a spark.</h2><p>Explore a topic and save it here. Each interest keeps its own notes.</p><button class="primary-button" id="discover-again">Find your first interest ↗</button></div></section>
+      <footer>Made for wandering minds.<span>Preview · Example content · No live AI connected</span></footer>
+    </main>
+  </div>
+  <dialog id="topic-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-top"><span class="eyebrow">YOUR NEXT RABBIT HOLE</span><button class="icon-button" id="close-dialog" aria-label="Close interest">✕</button></div>
+    <div class="topic-heading"><span id="dialog-category" class="card-category"></span><h2 id="dialog-title"></h2><p id="dialog-intro"></p><button class="save-button" id="save-interest"></button></div>
+    <div class="topic-tabs" role="tablist" aria-label="Explore this interest"><button id="ready-tab" role="tab" aria-selected="true" aria-controls="ready-panel" tabindex="0">Conversation Ready</button><button id="deeper-tab" role="tab" aria-selected="false" aria-controls="deeper-panel" tabindex="-1">Go deeper</button><button id="notes-tab" role="tab" aria-selected="false" aria-controls="notes-panel" tabindex="-1">My notes</button></div>
+    <section id="ready-panel" class="topic-panel" role="tabpanel" aria-labelledby="ready-tab" tabindex="0"><p class="example-label" id="ready-label">EXAMPLE CONTENT · AI COMES LATER</p><h3 id="ready-heading"></h3><p id="ready-body"></p><div class="conversation-starter"><span>A QUESTION TO OPEN WITH</span><p id="ready-question"></p></div></section>
+    <section id="deeper-panel" class="topic-panel" role="tabpanel" aria-labelledby="deeper-tab" tabindex="0" hidden><p class="example-label" id="deeper-label">EXAMPLE EXPLORATION PATH</p><h3>A few threads to follow.</h3><ol id="deeper-list"></ol><p class="muted">Personalized AI recommendations will be added in a later build.</p></section>
+    <section id="notes-panel" class="topic-panel" role="tabpanel" aria-labelledby="notes-tab" tabindex="0" hidden><label for="interest-notes">What would you like to remember?</label><p class="notes-hint">These notes belong only to this interest. Saving a note also saves the interest to your atlas.</p><textarea id="interest-notes" rows="6" maxlength="10000" placeholder="A question, a discovery, or something to explore next…"></textarea><button class="primary-button" id="save-notes">Save notes</button><p class="muted storage-note">Stored on this browser only. No account or cloud backup yet. Clearing browser data removes your atlas.</p></section>
+    <p class="future-inputs">Text exploration first. Photo and voice interaction come in a later build.</p>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
