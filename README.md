@@ -23,6 +23,7 @@ Try entering an interest, saving it, and adding a note. Then open another intere
 - Conversation Ready and deeper-exploration examples for four topics.
 - Saved interests and separate notes for each interest in this browser.
 - Keyboard navigation, accessible dialog tabs, and reduced-motion support.
+- Neon Atlas styling with cursor-following light, illuminated cards, a particle constellation, and a saved motion preference. Touch and reduced-motion settings use a calmer presentation. See `THEME.md` for the design foundations.
 
 ## What comes later
 

@@ -10,6 +10,13 @@ const TOPICS = [
 ];
 
 const $ = (selector) => document.querySelector(selector);
+const CARD_ART = {
+  astronomy:'<circle cx="120" cy="70" r="34"/><ellipse cx="120" cy="70" rx="75" ry="19" transform="rotate(-25 120 70)"/><circle cx="120" cy="70" r="47" stroke-dasharray="2 8"/><path d="M40 35h8m-4-4v8M194 84h10m-5-5v10M176 27h6m-3-3v6"/><circle cx="57" cy="103" r="2" fill="currentColor"/><circle cx="180" cy="48" r="3" fill="currentColor"/>',
+  photography:'<path d="M67 48h28l8-13h35l8 13h28v61H67z"/><circle cx="120" cy="77" r="21"/><circle cx="120" cy="77" r="12"/><path d="M153 59h9M51 42V27h20M169 27h20v15M51 115v12h20M169 127h20v-12M87 48v-6h8"/>',
+  philosophy:'<path d="M120 23l47 26v53l-47 26-47-26V49zM73 49l47 27 47-27M120 76v52M120 23v53M73 102l47-26 47 26"/><ellipse cx="120" cy="76" rx="79" ry="22" transform="rotate(-28 120 76)"/>',
+  architecture:'<path d="M63 104V57l38-22 38 22v47l-38 22zM63 57l38 22 38-22M101 79v47M139 79l29-17 28 17v35l-28 16-29-16M168 95v35M139 79l29 16 28-16M63 80L40 93v21l23 13 23-13M40 93l23 13 23-13M63 106v21"/>',
+  custom:'<circle cx="120" cy="75" r="37"/><circle cx="120" cy="75" r="59" stroke-dasharray="2 9"/><path d="M120 21v108M66 75h108M83 38l74 74M83 112l74-74"/><circle cx="120" cy="75" r="9" fill="currentColor"/>'
+};
 let storageAvailable = true;
 let atlas = loadAtlas();
 let activeTopic = null;
@@ -47,6 +54,12 @@ function showToast(message) {
   clearTimeout(toastTimer);
   $('#toast').textContent = message;
   $('#toast').hidden = false;
+  // A modal sits in the browser's top layer, above the page toast.
+  // Repeat feedback inside it so save confirmations remain visible.
+  if ($('#topic-dialog').open) {
+    $('#dialog-status').textContent = message;
+    $('#dialog-status').hidden = false;
+  }
   toastTimer = setTimeout(() => { $('#toast').hidden = true; }, 4500);
 }
 
@@ -67,7 +80,7 @@ function createCard(topic, saved = false) {
   // Only fixed markup enters innerHTML. User-provided topic titles always use textContent.
   button.innerHTML = '<div class="card-art"><span class="card-art-symbol" aria-hidden="true"></span><span class="card-art-caption"></span></div><div class="card-content"><span class="card-category"></span><h3></h3><p></p><div class="card-bottom"><span></span><span aria-hidden="true">↗</span></div></div>';
   button.querySelector('.card-art').classList.add(`art-${topic.custom ? 'custom' : topic.id}`);
-  button.querySelector('.card-art-symbol').textContent = topic.symbol;
+  button.querySelector('.card-art-symbol').innerHTML = `<svg viewBox="0 0 240 150" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">${CARD_ART[topic.custom ? 'custom' : topic.id]}</svg>`;
   button.querySelector('.card-art-caption').textContent = topic.caption;
   button.querySelector('.card-category').textContent = topic.category;
   button.querySelector('h3').textContent = topic.title;
@@ -113,6 +126,8 @@ function updateSaveButton() {
 
 function openTopic(topic) {
   activeTopic = topic;
+  $('#dialog-status').hidden = true;
+  $('#dialog-status').textContent = '';
   $('#dialog-title').textContent = topic.title;
   $('#dialog-category').textContent = topic.category;
   $('#dialog-intro').textContent = topic.intro;
@@ -133,6 +148,10 @@ function openTopic(topic) {
 }
 
 $('#interest-grid').replaceChildren(...TOPICS.map(topic => createCard(topic)));
+document.querySelectorAll('[data-topic]').forEach(button => button.addEventListener('click', () => {
+  const topic = TOPICS.find(item => item.id === button.dataset.topic);
+  if (topic) openTopic(topic);
+}));
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
 $('.brand').addEventListener('click', event => { event.preventDefault(); setView('discover'); });
 $('#discover-again').addEventListener('click', () => { setView('discover'); $('#topic-input').focus(); });
