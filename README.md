@@ -42,4 +42,4 @@ Next increment: review the interface and agree on one real text conversation flo
 
 JavaScript syntax checks passed. Automated logic checks passed for arbitrary topics, separate notes, persistence after reloading, case-insensitive topic lookup, protection against accidentally removing notes, safe display of user text, tab keyboard navigation, blank inputs, and unavailable or corrupt browser storage.
 
-The environment blocked local preview connections, so browser appearance, native dialog behavior, and responsive layout have not yet been visually verified. These are the first things to check when opening the prototype in your browser.
+The published GitHub Pages version was checked in a desktop browser: the Curiosity Atlas rendered, arbitrary topic entry opened an interest, notes saved and survived a reload, the saved interest appeared in My atlas, another interest opened with its own notes field, and the temporary test interest was removed. Mobile layout and cross-browser checks remain pending.
