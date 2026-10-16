@@ -54,11 +54,11 @@
         const nearPointer = Math.hypot(x - pointer.x,y - pointer.y);
         context.beginPath();
         context.arc(x,y,nearPointer < 220 ? 1.7 : 1,0,Math.PI * 2);
-        context.fillStyle = nearPointer < 220 ? '#85edff' : '#606d9b';
+        context.fillStyle = nearPointer < 220 ? '#ff7b9c' : '#82616f';
         context.fill();
         if (nearPointer < 190) {
           context.beginPath();context.moveTo(x,y);context.lineTo(pointer.x,pointer.y);
-          context.strokeStyle = `rgba(99,215,255,${.18 * (1 - nearPointer / 190)})`;
+          context.strokeStyle = `rgba(255,55,104,${.2 * (1 - nearPointer / 190)})`;
           context.stroke();
         }
         for (let other = index + 1; other < particles.length; other++) {
@@ -66,7 +66,7 @@
           const distance = Math.hypot(x - b.x * width,y - b.y * height);
           if (distance < 135) {
             context.beginPath();context.moveTo(x,y);context.lineTo(b.x * width,b.y * height);
-            context.strokeStyle = `rgba(117,125,204,${.1 * (1 - distance / 135)})`;
+            context.strokeStyle = `rgba(184,68,99,${.1 * (1 - distance / 135)})`;
             context.stroke();
           }
         }
@@ -93,7 +93,7 @@
   document.addEventListener('pointermove',event => {
     if (!enabled || event.pointerType === 'touch') return;
     pointer.x = event.clientX;pointer.y = event.clientY;
-    const candidate = event.target instanceof Element ? event.target.closest('.interest-card, .search-box, .nav-link, .bottom-note, .constellation-node, .primary-button, .save-button') : null;
+    const candidate = event.target instanceof Element ? event.target.closest('.interest-card, .discovery-card, .search-box, .nav-link, .primary-button, .save-button') : null;
     if (surface !== candidate) {resetSurface();surface = candidate;}
     if (pointerFrame) return;
     pointerFrame = requestAnimationFrame(() => {
@@ -132,3 +132,4 @@
   });
   resize();sync();
 })();
+

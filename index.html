@@ -1,65 +1,67 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#070914">
-  <meta name="description" content="HobbyQuest — a little curiosity can take you anywhere. Explore your interests and build your personal atlas.">
-  <title>HobbyQuest · Your curiosity atlas</title>
-  <link rel="stylesheet" href="styles.css?v=neon-1">
-  <script src="app.js?v=neon-1" defer></script>
-  <script src="motion.js?v=neon-1" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050708">
+<meta name="description" content="HobbyQuest — get into anything. Explore worlds, collect discoveries, and follow your curiosity.">
+<title>HobbyQuest · Get into anything</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=crimson-1">
+<script src="app.js?v=crimson-1" defer></script><script src="motion.js?v=crimson-1" defer></script>
 </head>
 <body>
-  <canvas id="constellation-background" aria-hidden="true"></canvas>
-  <div class="cursor-aura" aria-hidden="true"></div>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <a class="brand" href="#" aria-label="HobbyQuest home"><span class="brand-mark" aria-hidden="true">✳</span> HobbyQuest<span class="brand-dot">.</span></a>
-      <p class="sidebar-label">YOUR CURIOSITY ATLAS</p>
-      <nav aria-label="Main navigation">
-        <button class="nav-link active" data-view="discover"><span aria-hidden="true">◈</span> Discover <span class="nav-arrow" aria-hidden="true">↗</span></button>
-        <button class="nav-link" data-view="atlas"><span aria-hidden="true">◎</span> My atlas <span class="count" id="saved-count">0</span></button>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="daily-note"><span class="tiny-star" aria-hidden="true">✦</span><p>You don’t need a new passion.<br>Just a little curiosity.</p></div>
-        <div class="guest"><span class="guest-avatar" aria-hidden="true">G</span><div>Exploring as a guest<small>Your atlas stays in this browser</small></div></div>
-      </div>
-    </aside>
-    <main id="main-content">
-      <header class="topbar"><span class="edition"><span class="status-light" aria-hidden="true"></span> YOUR CURIOSITY. CONNECTED.</span><div class="topbar-actions"><button id="motion-toggle" class="motion-toggle" type="button" aria-pressed="true">Motion on</button><span class="preview-pill">DESIGN PREVIEW <span aria-hidden="true">↗</span></span></div></header>
-      <section id="discover-view" aria-labelledby="hero-title">
-        <div class="hero">
-          <div class="hero-copy"><p class="eyebrow"><span aria-hidden="true">✦</span> YOUR NEXT OBSESSION STARTS WITH A QUESTION</p><h1 id="hero-title">Stay curious.<br><em>Go somewhere new.</em></h1><p class="hero-description">Follow a passing thought into a whole new world.<br class="desktop-break"> Any topic. Your own path. A little further every time.</p><div class="hero-signature"><span class="signature-line" aria-hidden="true"></span> ONE SPARK. ENDLESS POSSIBILITIES.</div></div>
-          <div class="atlas-visual" aria-label="Explore the curiosity constellation">
-            <div class="sphere-halo" aria-hidden="true"></div>
-            <svg class="atlas-sphere" viewBox="0 0 400 340" aria-hidden="true"><defs><radialGradient id="sphere-fill"><stop stop-color="#6352ff" stop-opacity=".12"/><stop offset="1" stop-color="#09e8ff" stop-opacity=".01"/></radialGradient><linearGradient id="sphere-stroke" x2="1" y2="1"><stop stop-color="#5fe8ff"/><stop offset=".5" stop-color="#8970ff"/><stop offset="1" stop-color="#e16bfb"/></linearGradient></defs><g class="sphere-wire" fill="none" stroke="url(#sphere-stroke)"><circle cx="200" cy="165" r="121" fill="url(#sphere-fill)"/><ellipse cx="200" cy="165" rx="121" ry="43" transform="rotate(-25 200 165)"/><ellipse cx="200" cy="165" rx="121" ry="77" transform="rotate(-25 200 165)"/><ellipse cx="200" cy="165" rx="43" ry="121" transform="rotate(-25 200 165)"/><ellipse cx="200" cy="165" rx="77" ry="121" transform="rotate(-25 200 165)"/><path d="M85 130L316 199M104 240L296 91M200 44V286"/><circle class="sphere-orbit" cx="200" cy="165" r="150" stroke-dasharray="2 12"/></g><g class="sphere-stars" fill="#a2f8ff"><circle cx="102" cy="95" r="4"/><circle cx="313" cy="205" r="4"/><circle cx="184" cy="48" r="3"/><circle cx="132" cy="239" r="3"/><circle cx="254" cy="105" r="3"/><circle cx="202" cy="166" r="7"/></g><path d="M200 141V189M176 165H224M183 148L217 182M183 182L217 148" stroke="#c8c1ff" stroke-width="1.5"/></svg>
-            <button class="constellation-node node-space" data-topic="astronomy" type="button"><span aria-hidden="true"></span>Astronomy <span aria-hidden="true">↗</span></button>
-            <button class="constellation-node node-thought" data-topic="philosophy" type="button"><span aria-hidden="true"></span>Philosophy <span aria-hidden="true">↗</span></button>
-            <button class="constellation-node node-create" data-topic="photography" type="button"><span aria-hidden="true"></span>Photography <span aria-hidden="true">↗</span></button>
-            <span class="sphere-caption">YOUR UNIVERSE IS STILL EXPANDING</span>
-          </div>
-        </div>
-        <form id="topic-form" class="search-box"><label for="topic-input" class="sr-only">What are you curious about?</label><span class="search-symbol" aria-hidden="true">⌕</span><input id="topic-input" name="topic" placeholder="What are you curious about? Anything goes." maxlength="100" required autocomplete="off"><button type="submit">Let’s explore <span aria-hidden="true">↗</span></button></form>
-        <div class="search-under"><span><span class="small-spark" aria-hidden="true">✧</span> From black holes to breadmaking. Everything connects.</span><button id="surprise-button" class="text-button">Surprise me <span aria-hidden="true">↗</span></button></div>
-        <div class="section-heading"><div><p class="eyebrow">FOLLOW A SPARK</p><h2>Where will you go next<span class="heading-dot">?</span></h2></div><span class="muted section-aside">A few doors into something unexpected <span aria-hidden="true">↙</span></span></div>
-        <div class="interest-grid" id="interest-grid"></div>
-        <div class="bottom-note"><span aria-hidden="true">✧</span><p>Collect questions, not just answers.<small>Every interest gets a space of its own.</small></p><span class="note-line" aria-hidden="true"></span><span class="note-number" aria-hidden="true">01 / ∞</span></div>
-      </section>
-      <section id="atlas-view" aria-labelledby="atlas-title" hidden><p class="eyebrow atlas-eyebrow">YOUR PERSONAL CONSTELLATION</p><h1 id="atlas-title" class="atlas-title">A little more <em>you.</em></h1><p class="hero-description">Your saved interests. Your questions. A place to pick up where you left off.</p><div id="atlas-grid" class="interest-grid"></div><div id="empty-atlas" class="empty-atlas"><span aria-hidden="true">◎</span><h2>Your atlas starts with a spark.</h2><p>Explore a topic and save it here. Each interest keeps its own notes.</p><button class="primary-button" id="discover-again">Find your first interest ↗</button></div></section>
-      <footer>Made for wandering minds.<span>Preview · Example content · No live AI connected</span></footer>
-    </main>
-  </div>
-  <dialog id="topic-dialog" aria-labelledby="dialog-title">
-    <div class="dialog-top"><span class="eyebrow">YOUR NEXT RABBIT HOLE</span><button class="icon-button" id="close-dialog" aria-label="Close interest">✕</button></div>
-    <div class="topic-heading"><span id="dialog-category" class="card-category"></span><h2 id="dialog-title"></h2><p id="dialog-intro"></p><button class="save-button" id="save-interest"></button></div>
-    <div class="topic-tabs" role="tablist" aria-label="Explore this interest"><button id="ready-tab" role="tab" aria-selected="true" aria-controls="ready-panel" tabindex="0">Conversation Ready</button><button id="deeper-tab" role="tab" aria-selected="false" aria-controls="deeper-panel" tabindex="-1">Go deeper</button><button id="notes-tab" role="tab" aria-selected="false" aria-controls="notes-panel" tabindex="-1">My notes</button></div>
-    <section id="ready-panel" class="topic-panel" role="tabpanel" aria-labelledby="ready-tab" tabindex="0"><p class="example-label" id="ready-label">EXAMPLE CONTENT · AI COMES LATER</p><h3 id="ready-heading"></h3><p id="ready-body"></p><div class="conversation-starter"><span>A QUESTION TO OPEN WITH</span><p id="ready-question"></p></div></section>
-    <section id="deeper-panel" class="topic-panel" role="tabpanel" aria-labelledby="deeper-tab" tabindex="0" hidden><p class="example-label" id="deeper-label">EXAMPLE EXPLORATION PATH</p><h3>A few threads to follow.</h3><ol id="deeper-list"></ol><p class="muted">Personalized AI recommendations will be added in a later build.</p></section>
-    <section id="notes-panel" class="topic-panel" role="tabpanel" aria-labelledby="notes-tab" tabindex="0" hidden><label for="interest-notes">What would you like to remember?</label><p class="notes-hint">These notes belong only to this interest. Saving a note also saves the interest to your atlas.</p><textarea id="interest-notes" rows="6" maxlength="10000" placeholder="A question, a discovery, or something to explore next…"></textarea><button class="primary-button" id="save-notes">Save notes</button><p class="muted storage-note">Stored on this browser only. No account or cloud backup yet. Clearing browser data removes your atlas.</p></section>
-    <p id="dialog-status" class="dialog-status" role="status" aria-live="polite" hidden></p>
-    <p class="future-inputs">Text exploration first. Photo and voice interaction come in a later build.</p>
-  </dialog>
-  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-</body>
-</html>
+<canvas id="constellation-background" aria-hidden="true"></canvas><div class="cursor-aura" aria-hidden="true"></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header">
+<a class="brand" href="#" aria-label="HobbyQuest home">Hobby<span>Quest</span><i aria-hidden="true">✳</i></a>
+<nav aria-label="Main navigation"><button class="nav-link active" data-view="discover">Explore</button><a class="nav-link" href="#discoveries" data-home-anchor>Discoveries</a><button class="nav-link" data-view="atlas">My Atlas <span class="count" id="saved-count">0</span></button></nav>
+<div class="header-actions"><button id="motion-toggle" type="button" class="motion-toggle" aria-pressed="true">Motion on</button><button id="account-button" class="sign-in">Sign in <span aria-hidden="true">↗</span></button></div>
+</header>
+<main id="main-content">
+<div id="discover-view">
+<section class="hero" aria-labelledby="hero-title">
+<div class="hero-image" aria-hidden="true"></div><div class="hero-shade" aria-hidden="true"></div>
+<div class="hero-side" aria-hidden="true"><span class="active-index">01</span><span>02</span><span>03</span><span>04</span></div>
+<div class="hero-content"><p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> FOR THE INTERESTINGLY INTERESTED</p><h1 id="hero-title">GET INTO<br><em>ANYTHING.</em></h1><p class="hero-description">Good people obsess over weird things.<br>Find your next rabbit hole. Make it your world.</p>
+<form id="topic-form" class="search-box"><span aria-hidden="true" class="search-symbol">⌕</span><label for="topic-input" class="sr-only">What are you curious about?</label><input id="topic-input" placeholder="What are you curious about?" maxlength="100" autocomplete="off" required><button type="submit" aria-label="Explore this topic"><span aria-hidden="true">→</span></button></form>
+<div class="topic-pills" aria-label="Some places to begin"><span class="pill-label">Try a world</span><button data-topic="f1">F1</button><button data-topic="watches">Watches</button><button data-topic="japan">Japan</button><button data-topic="football">Football</button><button data-topic="astronomy">Space</button><button id="custom-topic-button" aria-label="Enter any other topic">+</button></div>
+</div>
+<div class="hero-stamp" aria-hidden="true">EXPLORE<br>LEARN<br>COLLECT<br>CONNECT <span>↗</span></div>
+<a class="scroll-cue" href="#spotlight"><span aria-hidden="true">↓</span> Scroll. There’s more down here.</a><span class="hero-edition">HQ / CURIOSITY HAS NO LIMITS</span>
+</section>
+<section class="collection" id="spotlight" aria-labelledby="spotlight-title">
+<div class="section-heading"><div><p class="eyebrow">BIG WORLDS. ZERO HOMEWORK.</p><h2 id="spotlight-title"><span class="red-icon" aria-hidden="true">✦</span> In the spotlight</h2><p class="section-caption">A few handpicked obsessions. Yours can be anything.</p></div><div class="carousel-controls"><button data-carousel="interest-grid" data-direction="-1" aria-label="Previous spotlight worlds">←</button><button data-carousel="interest-grid" data-direction="1" aria-label="Next spotlight worlds">→</button></div></div>
+<div id="interest-grid" class="carousel world-carousel" tabindex="0" role="region" aria-label="Handpicked worlds"></div><p class="row-hint">Swipe sideways. Follow a spark. <span aria-hidden="true">↔</span></p>
+</section>
+<section class="collection discoveries-section" id="discoveries" aria-labelledby="discoveries-title">
+<div class="section-heading"><div><p class="eyebrow">POCKET-SIZED RABBIT HOLES</p><h2 id="discoveries-title">Did you know you were into this<span class="red-text">?</span></h2><p class="section-caption">Open a discovery, then collect the ones that stay with you.</p></div><div class="carousel-controls"><button data-carousel="discovery-grid" data-direction="-1" aria-label="Previous discoveries">←</button><button data-carousel="discovery-grid" data-direction="1" aria-label="Next discoveries">→</button></div></div>
+<div id="discovery-grid" class="carousel discovery-carousel" tabindex="0" role="region" aria-label="Discoveries to collect"></div>
+</section>
+<section class="collection saved-section" aria-labelledby="saved-title">
+<div class="section-heading"><div><p class="eyebrow">YOUR UNIVERSE, TAKING SHAPE</p><h2 id="saved-title">Your saved worlds<span class="red-text">.</span></h2><p id="saved-preview-count" class="section-caption"></p></div><button class="text-button" id="open-atlas">Open my atlas ↗</button></div>
+<div id="saved-preview-grid" class="carousel world-carousel" tabindex="0" role="region" aria-label="Your saved worlds"></div><div id="saved-preview-empty" class="saved-empty"><span aria-hidden="true">◎</span><div><h3>A little empty. A lot of possibility.</h3><p>Save a world or a note, and this space becomes yours.</p></div></div>
+<div class="explorer-strip" aria-labelledby="explorer-title"><div class="explorer-intro"><span aria-hidden="true">✳</span><div><h3 id="explorer-title">Your curiosity leaves a trail.</h3><p>Collect the moments, not a score.</p></div></div><div class="activity-counts"><div><strong id="worlds-explored">0</strong><span>worlds explored</span></div><div><strong id="interests-saved">0</strong><span>interests saved</span></div><div><strong id="discoveries-collected">0</strong><span>discoveries collected</span></div></div><div id="explorer-badge" class="explorer-badge"></div></div>
+</section>
+<section class="collection" aria-labelledby="rabbit-title">
+<div class="section-heading"><div><p class="eyebrow">CURIOSITY DOESN’T DO STRAIGHT LINES</p><h2 id="rabbit-title"><span class="red-icon" aria-hidden="true">⚄</span> A beautifully random turn.</h2><p class="section-caption">You came for one thing. You might leave with eight.</p></div><div class="carousel-controls"><button id="surprise-button" class="surprise" aria-label="Surprise me with a world">Surprise me ↗</button><button data-carousel="rabbit-grid" data-direction="-1" aria-label="Previous unexpected worlds">←</button><button data-carousel="rabbit-grid" data-direction="1" aria-label="Next unexpected worlds">→</button></div></div>
+<div id="rabbit-grid" class="carousel world-carousel compact-carousel" tabindex="0" role="region" aria-label="Unexpected rabbit holes"></div>
+</section>
+<div class="closing-statement"><span>Curiosity.<br>No limits.</span><p>Every great conversation starts somewhere.<br>This could be your somewhere.</p><a href="#hero-title" aria-label="Back to the top">↑</a></div>
+</div>
+<section id="atlas-view" hidden aria-labelledby="atlas-title"><p class="eyebrow atlas-eyebrow">KEEP THE THINGS THAT MAKE YOU, YOU.</p><h1 id="atlas-title" class="atlas-title">MY <em>ATLAS.</em></h1><p class="hero-description">Your saved worlds. Your notes. Your next question.</p><div id="atlas-grid" class="atlas-grid"></div><div id="empty-atlas" class="empty-atlas"><span aria-hidden="true">◎</span><h2>Your atlas starts with a spark.</h2><p>Explore any topic and save it here. Each world keeps its own notes.</p><button class="primary-button" id="discover-again">Find your first world ↗</button></div></section>
+</main>
+<footer><a class="brand footer-brand" href="#" aria-label="HobbyQuest home">Hobby<span>Quest</span></a><span>For the endlessly curious.</span><p>Design preview · Example guides · Live AI coming later</p></footer>
+<dialog id="topic-dialog" aria-labelledby="dialog-title">
+<div class="dialog-top"><span class="eyebrow">WELCOME TO THE RABBIT HOLE</span><button class="icon-button" id="close-dialog" aria-label="Close interest">✕</button></div>
+<div class="topic-heading"><span id="dialog-category" class="card-category"></span><h2 id="dialog-title"></h2><p id="dialog-intro"></p><button class="save-button" id="save-interest"></button></div>
+<div class="topic-tabs" role="tablist" aria-label="Explore this interest"><button id="ready-tab" role="tab" aria-selected="true" aria-controls="ready-panel" tabindex="0">Conversation Ready</button><button id="deeper-tab" role="tab" aria-selected="false" aria-controls="deeper-panel" tabindex="-1">Go deeper</button><button id="notes-tab" role="tab" aria-selected="false" aria-controls="notes-panel" tabindex="-1">My notes</button></div>
+<section id="ready-panel" class="topic-panel" role="tabpanel" aria-labelledby="ready-tab" tabindex="0"><p class="example-label" id="ready-label">EXAMPLE GUIDE · LIVE AI COMES LATER</p><h3 id="ready-heading"></h3><p id="ready-body"></p><div class="conversation-starter"><span>A QUESTION TO OPEN WITH</span><p id="ready-question"></p></div></section>
+<section id="deeper-panel" class="topic-panel" role="tabpanel" aria-labelledby="deeper-tab" tabindex="0" hidden><p class="example-label" id="deeper-label">EXAMPLE EXPLORATION PATH</p><h3>A few threads to follow.</h3><ol id="deeper-list"></ol><p class="muted">Personalized AI recommendations come in a later build.</p></section>
+<section id="notes-panel" class="topic-panel" role="tabpanel" aria-labelledby="notes-tab" tabindex="0" hidden><label for="interest-notes">What would you like to remember?</label><p class="notes-hint">Only this world gets these notes. Saving a note also saves the world.</p><textarea id="interest-notes" rows="6" maxlength="10000" placeholder="A question, a discovery, or something to explore next…"></textarea><button class="primary-button" id="save-notes">Save notes</button><p class="storage-note muted">Saved in this browser. Clearing browser data removes guest notes and progress.</p></section>
+<p id="dialog-status" class="dialog-status" role="status" aria-live="polite" hidden></p><p class="future-inputs">Any topic is welcome. Photo, voice, and live conversations come later.</p>
+</dialog>
+<dialog id="account-dialog" aria-labelledby="account-title"><div class="dialog-top"><span class="eyebrow">YOUR WORLDS, WHEREVER YOU GO</span><button id="close-account" class="icon-button" aria-label="Close account preview">✕</button></div><h2 id="account-title">Make room for your curiosity.</h2><p>Right now, your interests, notes, discoveries, and badges stay in this browser as a guest.</p><div class="account-notice"><strong>Account syncing is the next step.</strong><p>Secure sign-in and carrying your memories across devices aren’t connected yet. There’s no need to enter a password here.</p></div><button id="continue-guest" class="primary-button">Continue as guest ↗</button><p class="storage-note muted">Your current guest data stays intact. No paid plan or subscription is enabled.</p></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body></html>
+

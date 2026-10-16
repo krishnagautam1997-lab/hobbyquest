@@ -1,40 +1,22 @@
-# HobbyQuest — Neon Atlas
+# HobbyQuest — Crimson Curiosity
 
-## Direction
+The founder-selected reference establishes ink-black surfaces, hot-red neon, brush headlines, cinematic imagery, and streetwear details. It replaces the earlier cyan/violet Neon Atlas direction.
 
-A modern, immersive curiosity interface. Midnight surfaces, clean sans-serif typography, luminous cyan and violet accents, and an interactive constellation. Keep open-ended exploration and the user's saved interests as the focus.
+## Layout and imagery
 
-## Visual foundations
+One spacious vertical homepage: hero, editorial spotlight, discoveries, saved worlds, and unexpected rabbit holes. Topic collections scroll horizontally with touch, trackpad, keyboard, or visible arrows. The spotlight is curated rather than a claim about live popularity. Unknown topics receive a clearly decorative cover rather than a misleading photograph.
 
-| Role | Value |
-| --- | --- |
-| Background | `#070914` |
-| Surface | `#101423` |
-| Main text | `#f2f4ff` |
-| Secondary text | `#a0a8c2` |
-| Cyan accent | `#70efff` |
-| Violet accent | `#a590ff` |
-| Border | `#252b43` |
-| Type | Local Segoe UI Variable / Segoe UI / Arial |
+Background #050708; surface #0b0f12; text #f7f6f5; accent #ff174b; borders #25292e. Typography uses Permanent Marker, Barlow Condensed, and Inter from Google Fonts with local fallbacks. Original generated imagery is stored in assets/.
 
-Use neon for interaction, emphasis, and diagrams. Body text stays clear without glow. Cards and controls use 7–14px rounded corners and thin luminous borders. Topic artwork is native SVG, so there are no paid image assets or external downloads.
+## Motion
 
-## Interaction language
+Soft crimson cursor illumination, nearby particle connections, gentle card response, and subtle hero parallax. Keep native cursors and calm reading dialogs. Respect reduced motion, offer a saved motion switch, pause background-tab animation, and support touch without pointer effects.
 
-- A soft cyan/violet aura follows the pointer.
-- Cards and controls reveal local light under the cursor; cards tilt by at most 2.5 degrees per axis.
-- Background particles form faint connections near the pointer.
-- The hero constellation shifts subtly, and its labelled nodes open real interest spaces.
-- Keyboard focus uses a visible cyan outline.
-- Save feedback appears inside an open interest dialog.
+## Real activity
 
-## Motion and accessibility
+Count unique worlds opened, currently saved interests, and discoveries explicitly collected. Optional First Spark, World Hopper, and Collector badges recognise actual local actions. No learned percentages, pressure streaks, or compulsory quizzes.
 
-- Keep the native cursor and normal scrolling.
-- Offer a persistent Motion on/off control.
-- Respect the operating system's reduced-motion setting.
-- Touch devices get the same controls and visual identity without pointer-only effects.
-- Pause particle animation when the page is hidden; cap canvas pixel density at 1.5.
-- Keep decorative SVG and canvas out of the accessibility tree.
+## Boundaries
 
-The visual update does not change the interest storage key, note format, topic coverage, or AI capabilities. Live AI is not connected.
+Sign in opens an honest account preview. No credentials, registration, or cross-device sync are connected. Guest records stay in this browser. Existing IDs and notes are preserved when custom interests gain curated guides or covers. Topic dialogs contain labelled example guides and separate notes. Full scrolling topic-world pages, story saves, secure accounts, photo/voice input, live image lookup, and live AI remain future work.
+

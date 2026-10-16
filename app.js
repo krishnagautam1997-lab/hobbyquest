@@ -2,6 +2,7 @@
 
 // No API calls, keys, tracking, or external dependencies in this Day 1 preview.
 const STORAGE_KEY = 'hobbyquest.atlas.v1';
+const PROGRESS_KEY = 'hobbyquest.progress.v1';
 const TOPICS = [
   {id:'astronomy',title:'Astronomy',category:'Beyond our world',description:'Big questions. A very, very big universe.',intro:'Look up. There’s an entire universe of questions waiting for you.',symbol:'☉',caption:'A LITTLE COSMIC PERSPECTIVE',heading:'Looking into the past.',body:'Light takes time to travel. The light from the Sun takes about eight minutes to reach Earth, while light from distant stars can take years. Looking at the night sky means seeing different moments in the past, all at once.',question:'If you could see one thing in space up close, what would you choose?',paths:['Start with our solar system: planets, moons, and the Sun.','Find out why stars have different colors.','Try spotting the Moon at the same time over several evenings.']},
   {id:'photography',title:'Street photography',category:'An eye for the everyday',description:'Ordinary moments. Extraordinary stories.',intro:'Notice the stories hiding in a familiar street, a shadow, or a fleeting moment.',symbol:'▧',caption:'THE BEAUTY IN BETWEEN',heading:'The scene is already there.',body:'Street photography is about paying attention to everyday life. Light, geometry, gestures, and timing can turn an ordinary place into an interesting frame. A phone is enough to begin noticing these elements.',question:'What makes a photograph feel like it tells a story?',paths:['Photograph the same corner in three different kinds of light.','Look for repeating shapes, reflections, and shadows.','Consider consent, privacy, and local rules before photographing people.']},
@@ -9,6 +10,37 @@ const TOPICS = [
   {id:'architecture',title:'Architecture',category:'Places that shape us',description:'See familiar places with fresh eyes.',intro:'Every space makes choices about light, movement, materials, and the people who use it.',symbol:'▥',caption:'READ THE SPACE AROUND YOU',heading:'Buildings change how we feel.',body:'Architecture shapes everyday experiences: where we walk, what we notice, and how a space feels. Daylight, scale, materials, and the arrangement of rooms all contribute. You can begin exploring by looking carefully at a place you already know.',question:'What is one place that makes you feel calm, and what about its design helps?',paths:['Notice where daylight enters your favorite room.','Compare two buildings’ entrances and how easy they are to navigate.','Sketch a familiar space and mark where people naturally gather.']}
 ];
 
+Object.assign(TOPICS[0],{art:'space',sheet:'worlds',aliases:['space']});
+Object.assign(TOPICS[1],{art:'photography',sheet:'worlds',aliases:['photography']});
+Object.assign(TOPICS[2],{art:'art',sheet:'rabbit'});
+Object.assign(TOPICS[3],{art:'japan',sheet:'worlds'});
+function makeTopic(id,title,category,description,heading,body,question,paths,art=id,sheet='worlds',aliases=[]) {
+  return {id,title,category,description,intro:description,heading,body,question,paths,art,sheet,aliases};
+}
+TOPICS.push(
+  makeTopic('f1','Formula 1','Speed. People. Obsession.','Rivalries, engineering, and life beyond the track.','Grip from the air.','An F1 car uses its shape to produce downforce: an aerodynamic force that presses the car toward the track. More grip helps in corners, but the setup also has to balance drag on the straights. The interesting story is the trade-off.','Would you rather design the fastest car or make the right call from the pit wall?',['Follow a rivalry through the choices each driver makes.','Explore downforce, tyres, and pit strategy.','Connect racing to materials, watches, and aerodynamics.'],'f1','worlds',['f1','formula one']),
+  makeTopic('watches','Watches','Time, craft, and culture','Tiny machines. Surprisingly big stories.','A tiny mechanical world.','A mechanical watch stores energy in a wound spring and releases it through a regulated mechanism. Design, craftsmanship, and culture all shape why people find watches interesting. A price tag alone does not tell the whole story.','What draws you to a watch: the design, the mechanism, or the story?',['Look closely at a mechanical movement.','Compare a tool watch with a dress watch.','Explore the relationship between timing and motorsport.'],'watches','worlds',['watch culture']),
+  makeTopic('streetwear','Streetwear','Style. Stories. Subcultures.','What we wear says more than we think.','Clothes carry context.','Streetwear draws on scenes such as skateboarding, music, sport, and independent design. The same garment can mean something different in another community. Its history is often as interesting as its silhouette.','What piece of clothing feels most like you?',['Follow one silhouette through different scenes.','Explore how music and sport shape style.','Look at materials and construction, not only a label.']),
+  makeTopic('japan','Japan','Culture. People. The unexpected.','Follow a detail into a completely different story.','Start with one detail.','A place becomes more interesting when you move beyond a single image of it. Architecture, regional food, design, language, and everyday routines offer different entry points into Japan. Choose a question instead of trying to absorb a whole country at once.','Would you begin with food, cities, design, or language?',['Explore a particular city or region.','Follow one everyday object into its design history.','Compare how local traditions change over time.']),
+  makeTopic('truecrime','True Crime','Real stories. Careful questions.','Evidence, storytelling, and the people behind a case.','Evidence before theory.','A compelling narrative is not the same as a well-supported claim. When exploring a case, distinguish established facts from allegations and speculation. Remember that real people and their families are part of the story.','What makes a crime story responsible rather than just gripping?',['Check how a claim is supported.','Notice the difference between a record and a retelling.','Explore the ethics of telling real people’s stories.']),
+  makeTopic('football','Football','The beautiful game','The tactics. The stories. The culture.','Watch the space without the ball.','Football becomes a different game when you notice movement away from the ball. A run can pull a defender out of position or create an option for someone else. Tactics are a conversation between space, timing, and decisions.','What do you enjoy more: a clever team move or a moment of individual brilliance?',['Explore pressing and why teams use it.','Follow the history of a club or rivalry.','Notice how one player changes the shape of a team.']),
+  makeTopic('aviation','Aviation','Engineering with altitude','The ideas that make flight possible.','A whole system in the sky.','Flight brings together aerodynamics, structures, propulsion, navigation, and people. One simple question about a wing or an engine can open several connected subjects.','What would you explore first: the wing, the engine, or the cockpit?',['Explore the shape of a wing.','Follow the path of air through a jet engine.','Connect aircraft design to materials.'],'aviation','rabbit'),
+  makeTopic('cinema','Cinema','Stories in motion','Frames, sound, and the art of feeling something.','A scene is made of choices.','Framing, editing, sound, light, and performance work together to shape a scene. Watching how those choices interact can make a familiar film feel new.','Which scene stayed with you, and what made it work?',['Watch a scene with attention to sound.','Notice what a cut leaves out.','Explore a director’s visual choices.'],'cinema','rabbit',['film']),
+  makeTopic('food','Food','A very good rabbit hole','Flavour, ritual, and the stories on a plate.','One dish, many connections.','A dish can connect geography, technique, ingredients, migration, and memory. Pick something you love eating and follow one of those threads.','What food instantly reminds you of a place or person?',['Follow one ingredient through different dishes.','Explore the technique behind a favourite meal.','Connect food to local history.'],'food','rabbit'),
+  makeTopic('chess','Chess','Small board. Big possibilities.','Patterns, decisions, and beautiful ideas.','Look for a plan.','A chess position is more than the next move. Piece activity, king safety, and the shape of the pawns can suggest a plan. Understanding why a move fits that plan can be more satisfying than memorising it.','Do you prefer careful plans or surprising tactical ideas?',['Explore how pieces work together.','Follow one instructive game.','Look for a pattern you recognise.'],'chess','rabbit'),
+  makeTopic('art','Art','Look a little longer','Ideas, materials, and new ways of seeing.','Your first reaction is a starting point.','An artwork can invite questions about materials, form, context, and the person looking at it. You do not need the perfect interpretation to begin noticing.','What catches your eye before you read the label?',['Look closely at one material.','Explore the context around a work.','Compare two very different interpretations.'],'art','rabbit'),
+  makeTopic('skincare','Skincare','Formulation meets everyday culture','Ingredients, packaging, and personal routines.','A world behind a familiar product.','Skincare connects formulation, packaging, marketing, and daily habits. Product claims are a useful place to practise asking what evidence supports a message. This example is for topic exploration, not personal medical advice.','Are you more curious about formulation, design, or the culture around a routine?',['Explore how a product label is structured.','Look at the design of a familiar bottle.','Compare a marketing claim with its supporting evidence.'],'skincare','rabbit'),
+  makeTopic('economics','Economics','Choices, incentives, and trade-offs','The systems behind everyday decisions.','Start with a trade-off.','Economics often starts with choices under constraints. Incentives, scarcity, and opportunity costs can help explain everyday behaviour, while real outcomes still depend on context.','What everyday choice made you think about value differently?',['Explore opportunity cost in an everyday decision.','Look at the incentives in a familiar system.','Compare a simple model with real-world context.'],'economics','rabbit'),
+  makeTopic('gaming','Gaming','Play. Design. Community.','What makes a world worth coming back to?','Good play is built from decisions.','Games combine rules, feedback, challenge, and expression. A small design choice can change what a player notices or feels. You can explore those ideas without needing to make a game yourself.','What makes a game stay with you after you stop playing?',['Notice how a game teaches a mechanic.','Explore the relationship between sound and feedback.','Follow the culture around a favourite genre.'],'gaming','rabbit')
+);
+const SPOTLIGHT = ['f1','watches','streetwear','astronomy','japan','truecrime','football','photography'];
+const RABBIT_HOLES = ['aviation','cinema','food','chess','art','skincare','economics','gaming'];
+const DISCOVERIES = [
+ {id:'air-and-grip',topic:'f1',title:'Why F1 cars chase the air.',description:'A little downforce. A very different kind of grip.',tag:'ENGINEERING ↔ SPORT'},
+ {id:'time-in-miniature',topic:'watches',title:'An entire machine on your wrist.',description:'Follow a spring into a world of tiny, deliberate decisions.',tag:'CRAFT ↔ MECHANICS'},
+ {id:'space-between-stars',topic:'astronomy',title:'The sky is a collection of old light.',description:'Looking up means looking into more than one moment.',tag:'SPACE ↔ TIME'},
+ {id:'game-without-ball',topic:'football',title:'The game happening without the ball.',description:'Once you notice the space, you see a different match.',tag:'SPORT ↔ STRATEGY'}
+];
 const $ = (selector) => document.querySelector(selector);
 const CARD_ART = {
   astronomy:'<circle cx="120" cy="70" r="34"/><ellipse cx="120" cy="70" rx="75" ry="19" transform="rotate(-25 120 70)"/><circle cx="120" cy="70" r="47" stroke-dasharray="2 8"/><path d="M40 35h8m-4-4v8M194 84h10m-5-5v10M176 27h6m-3-3v6"/><circle cx="57" cy="103" r="2" fill="currentColor"/><circle cx="180" cy="48" r="3" fill="currentColor"/>',
@@ -19,6 +51,7 @@ const CARD_ART = {
 };
 let storageAvailable = true;
 let atlas = loadAtlas();
+let progress = loadProgress();
 let activeTopic = null;
 let toastTimer;
 
@@ -65,9 +98,13 @@ function showToast(message) {
 
 function getTopic(title, id) {
   const normalized = title.trim().toLocaleLowerCase();
-  const known = TOPICS.find(topic => topic.id === id || topic.title.toLocaleLowerCase() === normalized);
-  if (known) return known;
-  return {id:id || `topic:${normalized}`,title:title.trim(),category:'A curiosity of your own',description:'A new thread in your personal atlas.',intro:'Every question is a place to start. Make this interest your own.',symbol:'✳',caption:'FOLLOW YOUR OWN THREAD',custom:true,heading:'Your curiosity has a place here.',body:'You can save this topic and keep your own questions and notes here. Live AI explanations aren’t connected in this preview, so we haven’t generated an answer about this topic.',question:`What first made you curious about ${title.trim()}?`,paths:['Write down what you already know or think you know.','Capture one question you would like to explore.','Add a source or an observation to your notes as you learn.']};
+  const names = topic => [topic.title,...(topic.aliases || [])].map(name => name.toLocaleLowerCase());
+  const known = TOPICS.find(topic => topic.id === id || names(topic).includes(normalized));
+  const saved = (id && atlas.find(item => item.id === id)) || atlas.find(item => item.title.trim().toLocaleLowerCase() === normalized || (known && names(known).includes(item.title.trim().toLocaleLowerCase())));
+  // Preserve IDs created before a custom interest gains a curated cover/guide.
+  // In particular, topic:football must not become football and orphan its notes.
+  if (known) return {...known,id:saved?.id || id || known.id};
+  return {id:id || saved?.id || `topic:${normalized}`,title:saved?.title || title.trim(),category:'A curiosity of your own',description:'A world of your own. Start anywhere.',intro:'Every question is a place to start. Make this interest your own.',custom:true,heading:'Your curiosity has a place here.',body:'You can save this topic and keep your own questions and notes here. Live AI explanations aren’t connected in this preview, so we haven’t generated an answer about this topic.',question:`What first made you curious about ${title.trim()}?`,paths:['Write down what you already know or think you know.','Capture one question you would like to explore.','Add a source or an observation to your notes as you learn.']};
 }
 
 function createCard(topic, saved = false) {
@@ -78,15 +115,15 @@ function createCard(topic, saved = false) {
   button.type = 'button';
   button.setAttribute('aria-label', `Explore ${topic.title}`);
   // Only fixed markup enters innerHTML. User-provided topic titles always use textContent.
-  button.innerHTML = '<div class="card-art"><span class="card-art-symbol" aria-hidden="true"></span><span class="card-art-caption"></span></div><div class="card-content"><span class="card-category"></span><h3></h3><p></p><div class="card-bottom"><span></span><span aria-hidden="true">↗</span></div></div>';
-  button.querySelector('.card-art').classList.add(`art-${topic.custom ? 'custom' : topic.id}`);
-  button.querySelector('.card-art-symbol').innerHTML = `<svg viewBox="0 0 240 150" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">${CARD_ART[topic.custom ? 'custom' : topic.id]}</svg>`;
-  button.querySelector('.card-art-caption').textContent = topic.caption;
+  button.innerHTML = '<div class="card-art" aria-hidden="true"></div><div class="card-content"><span class="card-category"></span><h3></h3><p></p><div class="card-bottom"><span></span><span aria-hidden="true">↗</span></div></div>';
+  const art = button.querySelector('.card-art');
+  if (topic.custom) { art.classList.add('art-custom'); art.innerHTML='<span class="custom-cover-label">YOUR OWN WORLD · DECORATIVE COVER</span>'; }
+  else art.classList.add(`sheet-${topic.sheet || 'worlds'}`,`tile-${topic.art || 'space'}`);
   button.querySelector('.card-category').textContent = topic.category;
   button.querySelector('h3').textContent = topic.title;
   button.querySelector('.card-content p').textContent = topic.description;
   button.querySelector('.card-bottom span').textContent = saved ? 'Continue exploring' : 'Follow this curiosity';
-  button.addEventListener('click', () => openTopic(topic));
+  button.addEventListener('click', () => { openTopic(topic); if (saved && atlas.find(item => item.id === topic.id)?.notes) selectTab('notes-tab'); });
   card.append(button);
   return card;
 }
@@ -95,6 +132,11 @@ function renderAtlas() {
   $('#saved-count').textContent = atlas.length;
   $('#atlas-grid').replaceChildren(...atlas.map(item => createCard(getTopic(item.title,item.id),true)));
   $('#empty-atlas').hidden = atlas.length > 0;
+  $('#saved-preview-grid').replaceChildren(...atlas.map(item => createCard(getTopic(item.title,item.id),true)));
+  $('#saved-preview-grid').hidden = atlas.length === 0;
+  $('#saved-preview-empty').hidden = atlas.length > 0;
+  $('#saved-preview-count').textContent = atlas.length ? `${atlas.length} saved ${atlas.length === 1 ? 'world' : 'worlds'}. Pick up where you left off.` : 'Your next favourite thing deserves a place here.';
+  renderProgress();
 }
 
 function setView(view) {
@@ -125,6 +167,7 @@ function updateSaveButton() {
 }
 
 function openTopic(topic) {
+  topic = getTopic(topic.title,topic.id);
   activeTopic = topic;
   $('#dialog-status').hidden = true;
   $('#dialog-status').textContent = '';
@@ -145,9 +188,11 @@ function openTopic(topic) {
   updateSaveButton();
   selectTab('ready-tab');
   $('#topic-dialog').showModal();
+  if (!progress.visited.includes(topic.id)) { progress.visited.push(topic.id); persistProgress(); renderProgress(); }
 }
 
-$('#interest-grid').replaceChildren(...TOPICS.map(topic => createCard(topic)));
+$('#interest-grid').replaceChildren(...SPOTLIGHT.map(id => createCard(getTopic(TOPICS.find(topic => topic.id === id).title,id))));
+$('#rabbit-grid').replaceChildren(...RABBIT_HOLES.map(id => createCard(TOPICS.find(topic => topic.id === id))));
 document.querySelectorAll('[data-topic]').forEach(button => button.addEventListener('click', () => {
   const topic = TOPICS.find(item => item.id === button.dataset.topic);
   if (topic) openTopic(topic);
@@ -162,6 +207,12 @@ $('#topic-form').addEventListener('submit', event => {
   openTopic(getTopic(title));
 });
 $('#topic-input').addEventListener('input', () => $('#topic-input').setCustomValidity(''));
+$('#custom-topic-button').addEventListener('click', () => $('#topic-input').focus());
+$('#open-atlas').addEventListener('click', () => { setView('atlas'); window.scrollTo({top:0,behavior:'auto'}); });
+document.querySelectorAll('[data-home-anchor]').forEach(link => link.addEventListener('click', () => setView('discover')));
+$('#account-button').addEventListener('click', () => $('#account-dialog').showModal());
+$('#close-account').addEventListener('click', () => $('#account-dialog').close());
+$('#continue-guest').addEventListener('click', () => $('#account-dialog').close());
 $('#surprise-button').addEventListener('click', () => openTopic(TOPICS[Math.floor(Math.random() * TOPICS.length)]));
 $('#close-dialog').addEventListener('click', () => $('#topic-dialog').close());
 $('#topic-dialog').addEventListener('click', event => {
@@ -207,5 +258,54 @@ $('#save-notes').addEventListener('click', () => {
   if (persisted) showToast('Notes saved for this interest on this browser.');
 });
 renderAtlas();
+renderDiscoveries();
+initCarousels();
 setView('discover');
 if (!storageAvailable) showToast('Browser storage is unavailable. Your atlas will last only for this session.');
+
+function loadProgress() {
+  const fallback = {visited:atlas.map(item => item.id),discoveries:[]};
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    if (!raw) return fallback;
+    const data = JSON.parse(raw);
+    if (!data || typeof data !== 'object') return fallback;
+    return {visited:[...new Set([...(Array.isArray(data.visited) ? data.visited.filter(id => typeof id === 'string') : []),...fallback.visited])].slice(0,2000),discoveries:[...new Set(Array.isArray(data.discoveries) ? data.discoveries.filter(id => DISCOVERIES.some(item => item.id === id)) : [])]};
+  } catch { return fallback; }
+}
+function persistProgress() {
+  try {localStorage.setItem(PROGRESS_KEY,JSON.stringify(progress));return true;}
+  catch {showToast('Progress is available for this session only because browser storage is unavailable.');return false;}
+}
+function renderProgress() {
+  $('#worlds-explored').textContent = progress.visited.length;
+  $('#interests-saved').textContent = atlas.length;
+  $('#discoveries-collected').textContent = progress.discoveries.length;
+  $('#explorer-badge').textContent = progress.discoveries.length >= 3 ? '✦ Collector unlocked · 3 discoveries' : progress.visited.length >= 3 ? '✦ World Hopper unlocked · 3 worlds' : progress.visited.length >= 1 ? '✧ First Spark unlocked · Your trail has begun' : 'Your first spark is waiting.';
+}
+function renderDiscoveries() {
+  $('#discovery-grid').replaceChildren(...DISCOVERIES.map(discovery => {
+    const topic = TOPICS.find(item => item.id === discovery.topic);
+    const card = document.createElement('article');card.className='discovery-card';
+    const open = document.createElement('button');open.className='discovery-open';open.type='button';open.setAttribute('aria-label',`Read discovery: ${discovery.title}`);
+    open.innerHTML='<div class="card-art discovery-art" aria-hidden="true"></div><div class="discovery-copy"><small></small><h3></h3><p></p></div>';
+    open.querySelector('.card-art').classList.add(`sheet-${topic.sheet || 'worlds'}`,`tile-${topic.art || 'space'}`);
+    open.querySelector('small').textContent=discovery.tag;open.querySelector('h3').textContent=discovery.title;open.querySelector('p').textContent=discovery.description;
+    open.addEventListener('click',()=>openTopic(getTopic(topic.title)));
+    const collect = document.createElement('button');collect.type='button';collect.className='collect-button';
+    const selected=progress.discoveries.includes(discovery.id);collect.textContent=selected?'✓ Collected · Remove':'+ Collect discovery';collect.setAttribute('aria-pressed',String(selected));collect.setAttribute('aria-label',`${selected?'Remove':'Collect'} discovery: ${discovery.title}`);
+    collect.addEventListener('click',()=>{const index=progress.discoveries.indexOf(discovery.id);if(index>=0)progress.discoveries.splice(index,1);else progress.discoveries.push(discovery.id);const saved=persistProgress();renderDiscoveries();renderProgress();if(saved)showToast(index>=0?'Discovery removed from your collection.':'Discovery collected. A little more you.');});
+    card.append(open,collect);return card;
+  }));
+}
+function initCarousels() {
+  document.querySelectorAll('[data-carousel]').forEach(button => button.addEventListener('click',()=>{
+    const row=document.getElementById(button.dataset.carousel);const card=row.firstElementChild;if(!card)return;
+    row.scrollBy({left:Number(button.dataset.direction)*(card.getBoundingClientRect().width+17)*2,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }));
+  document.querySelectorAll('.carousel').forEach(row=>row.addEventListener('keydown',event=>{
+    if(event.target!==row || !['ArrowLeft','ArrowRight'].includes(event.key))return;
+    event.preventDefault();row.scrollBy({left:event.key==='ArrowRight'?240:-240,behavior:'auto'});
+  }));
+}
+

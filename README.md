@@ -1,46 +1,29 @@
-# HobbyQuest — Day 1
+# HobbyQuest — Get into anything
 
-A browser prototype of your Curiosity Atlas. No installation, API key, paid service, or external library is required for this version.
+[Open the live prototype](https://krishnagautam1997-lab.github.io/hobbyquest/)
 
-## Try it
+A guest-first interest discovery prototype with a founder-selected crimson-neon identity. Source: krishnagautam1997-lab/hobbyquest. GitHub Pages publishes from main/root. No paid API or service is connected.
 
-Browser preview: [Open HobbyQuest](https://krishnagautam1997-lab.github.io/hobbyquest/).
+## Working features
 
-GitHub Pages publishes the files from the root of `main`. After a change, allow the deployment to finish before checking the new version. This public-repository setup uses [GitHub Pages on the free plan](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+- Spacious vertical homepage with horizontal topic collections, touch scrolling, arrows, and keyboard scrolling.
+- Any-topic entry. Curated topics receive original images and example guides. Unknown topics receive a labelled decorative cover and reflection framework.
+- Saved interests and separate notes, including compatibility with interests saved before this redesign.
+- Discovery collections, unique world counts, current saved-interest counts, and optional badges based on real local actions.
+- Crimson cursor glow, particle connections, card response, and hero parallax; motion toggle, reduced-motion handling, and touch fallback.
+- A visible Sign in entry that clearly explains account syncing is not connected yet.
 
-To try the files offline instead:
+## Future work
 
-Open `index.html` in a modern browser. All three app files (`index.html`, `styles.css`, `app.js`) must stay in the same folder.
+Live text AI, arbitrary-topic image lookup, secure accounts and guest-data migration, cross-device interest memories, full scrolling world pages and story saves, photo and voice input. Current guides are static examples, not live AI responses.
 
-If Node.js is installed, `node server.mjs` starts an optional preview at http://127.0.0.1:4173. Keep that terminal open while using the preview; Ctrl+C stops it. The server accepts connections only from this computer.
+## Guest storage
 
-Try entering an interest, saving it, and adding a note. Then open another interest to see that its notes are separate. Return to My atlas to resume an interest.
+hobbyquest.atlas.v1 stores saved IDs, titles and notes. hobbyquest.progress.v1 stores unique explored IDs and explicitly collected discoveries. hobbyquest.motion.v1 stores the motion preference. These are browser-local records, not cloud accounts. Clearing browser data removes them. Other browsers/devices do not share them. Unavailable storage produces visible session-only feedback.
 
-## What works
+## Run locally
 
-- Dark, responsive Curiosity Atlas interface with guest access.
-- Any typed topic can have its own interest space; example cards are starting points, not a topic restriction.
-- Conversation Ready and deeper-exploration examples for four topics.
-- Saved interests and separate notes for each interest in this browser.
-- Keyboard navigation, accessible dialog tabs, and reduced-motion support.
-- Neon Atlas styling with cursor-following light, illuminated cards, a particle constellation, and a saved motion preference. Touch and reduced-motion settings use a calmer presentation. See `THEME.md` for the design foundations.
+Open index.html with the other files and assets kept together, or run `node server.mjs` for a local-only preview at http://127.0.0.1:4173. Ctrl+C stops it. Google Fonts needs a connection; local fallbacks are provided.
 
-## What comes later
+See THEME.md for design rules and ASSETS.md for original artwork and generation briefs. Internal research stays outside this public repository. Do not commit secrets or enable paid services under the strict initial $0 cash budget.
 
-This is a design and interaction prototype, not a live AI product. The four included topic explanations are written examples. Other topics show a general reflection framework, not generated knowledge. No live AI chat, photo understanding, voice input, personalized recommendations, account registration, or cloud synchronization is connected.
-
-Notes are the first building block for separate interest memories; automatic conversational AI memory is not implemented. Browser storage is not an account or backup. Clearing browser data removes saved interests. Storage belongs to the current browser address: file mode and the optional local server do not share an atlas. Private browsing or browser settings can prevent persistence.
-
-## Ownership and budget
-
-Source repository: [krishnagautam1997-lab/hobbyquest](https://github.com/krishnagautam1997-lab/hobbyquest). The repository is currently public. The app code and this setup guide are included; internal research and founder notes are kept outside this repository.
-
-This version sends no data to AI providers and incurs no application service charges. Before adding hosted services or AI, verify current free allowances and spending controls. Do not enable billing, paid trials, or automatic paid upgrades under the $0 budget.
-
-Next increment: review the interface and agree on one real text conversation flow before adding photo, voice, registration, or cloud memory.
-
-## Verification
-
-JavaScript syntax checks passed. Automated logic checks passed for arbitrary topics, separate notes, persistence after reloading, case-insensitive topic lookup, protection against accidentally removing notes, safe display of user text, tab keyboard navigation, blank inputs, and unavailable or corrupt browser storage.
-
-The published GitHub Pages version was checked in a desktop browser: the Curiosity Atlas rendered, arbitrary topic entry opened an interest, notes saved and survived a reload, the saved interest appeared in My atlas, another interest opened with its own notes field, and the temporary test interest was removed. Mobile layout and cross-browser checks remain pending.
