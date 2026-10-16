@@ -1,8 +1,14 @@
 # HobbyQuest — Day 1
 
-A local prototype of your Curiosity Atlas. No installation, API key, paid service, or external library is required for this version.
+A browser prototype of your Curiosity Atlas. No installation, API key, paid service, or external library is required for this version.
 
 ## Try it
+
+Browser preview: [Open HobbyQuest](https://krishnagautam1997-lab.github.io/hobbyquest/).
+
+GitHub Pages publishes the files from the root of `main`. After a change, allow the deployment to finish before checking the new version. This public-repository setup uses [GitHub Pages on the free plan](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+
+To try the files offline instead:
 
 Open `index.html` in a modern browser. All three app files (`index.html`, `styles.css`, `app.js`) must stay in the same folder.
 
