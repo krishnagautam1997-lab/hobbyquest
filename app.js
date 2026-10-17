@@ -1,6 +1,6 @@
 'use strict';
 
-// No API calls, keys, tracking, or external dependencies in this Day 1 preview.
+// Guest atlas and prepared guides. Explicit live AI requests live in chat.js.
 const STORAGE_KEY = 'hobbyquest.atlas.v1';
 const PROGRESS_KEY = 'hobbyquest.progress.v1';
 const TOPICS = [
@@ -115,7 +115,7 @@ function getTopic(title, id) {
   // Preserve IDs created before a custom interest gains a curated cover/guide.
   // In particular, topic:football must not become football and orphan its notes.
   if (known) return {...known,id:saved?.id || id || known.id};
-  return {id:id || saved?.id || `topic:${normalized}`,title:saved?.title || title.trim(),category:'A curiosity of your own',description:'A world of your own. Start anywhere.',intro:'Every question is a place to start. Make this interest your own.',custom:true,heading:'Your curiosity has a place here.',body:'You can save this topic and keep your own questions and notes here. Live AI explanations aren’t connected in this preview, so we haven’t generated an answer about this topic.',question:`What first made you curious about ${title.trim()}?`,paths:['Write down what you already know or think you know.','Capture one question you would like to explore.','Add a source or an observation to your notes as you learn.']};
+  return {id:id || saved?.id || `topic:${normalized}`,title:saved?.title || title.trim(),category:'A curiosity of your own',description:'A world of your own. Start anywhere.',intro:'Every question is a place to start. Make this interest your own.',custom:true,heading:'Your curiosity has a place here.',body:'We haven’t generated an answer about this topic on this page. Choose Ask AI for a live introduction or a deeper conversation. You can also save this world and keep your own separate notes.',question:`What first made you curious about ${title.trim()}?`,paths:['Write down what you already know or think you know.','Capture one question you would like to explore.','Add a source or an observation to your notes as you learn.']};
 }
 
 function createCard(topic, saved = false) {
@@ -198,7 +198,7 @@ function openTopic(topic, startAt = 'ready') {
   $('#dialog-title').textContent = topic.title;
   $('#dialog-category').textContent = topic.category;
   $('#dialog-intro').textContent = topic.intro;
-  $('#ready-label').textContent = topic.custom ? 'YOUR OWN TOPIC · AI COMES LATER' : 'EXAMPLE CONTENT · AI COMES LATER';
+  $('#ready-label').textContent = topic.custom ? 'YOUR OWN TOPIC · TRY ASK AI' : 'PREPARED EXAMPLE · TRY ASK AI FOR LIVE CHAT';
   $('#deeper-label').textContent = topic.custom ? 'A STARTING FRAMEWORK · NO AI GENERATED CONTENT' : 'EXAMPLE EXPLORATION PATH';
   $('#ready-heading').textContent = topic.heading;
   $('#ready-body').textContent = topic.body;
