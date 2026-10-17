@@ -1,5 +1,7 @@
 # Live text AI increment — 17 October 2026
 
+Search focus refinement: the global input focus outline was drawing a second square pink rectangle inside the rounded homepage search form. The search input now delegates its visible focus cue to the rounded parent via :focus-within. Other controls retain their focus outlines, and forced-colours mode gets an explicit high-contrast parent outline. tests/focus.cjs guards the scoped styling. No guest storage or backend behaviour changes.
+
 Added chat.js/chat.css and a labelled AI Guide dialog, contextual F1 and topic entry buttons, per-interest browser-local chat history, explicit transmission acknowledgement, bounded recent-message context, failure/retry drafts, plain-text response rendering, and independent confirmed chat reset. Saved atlas notes and other threads are never included in requests. Existing storage schemas remain intact. Text only; no accounts, cloud memory, live web search, photo, or voice.
 
 Backend source and configuration are in backend/. The founder created a Cloudflare account, enabled the AI binding, and retained Workers Free. A separate hobbyquest-ai Worker was deployed through the dashboard, with AI and CHAT_LIMITER bindings (5 requests/60 seconds, namespace 1001). No payment setup, key in frontend, paid model, gateway, or automatic fallback. Frontend deployment is GitHub Pages from main/root. Worker deployments are currently separate/manual; source is backed up in this GitHub repo.
