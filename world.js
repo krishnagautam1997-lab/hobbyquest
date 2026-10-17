@@ -194,7 +194,7 @@
     const existing = notesDirty ? notes.value : atlas.find(item => item.id === getF1().id)?.notes || '';
     if (existing.length + question.length + 2 > 10000) {$('#story-status').textContent = 'Your F1 notes are full. Save or edit them before adding another question.';return;}
     $('#story-dialog').close();
-    if (!inWorld) showWorld({focus:false});
+    if (!inWorld) open({notes:true,focus:false});
     notes.value = [notes.value.trimEnd(),question].filter(Boolean).join('\n\n');
     notesDirty = true;$('#f1-note-status').textContent = 'Question added to your draft. Save F1 notes to keep it after a refresh.';
     if (window.location.hash !== '#world/f1') window.history.pushState(null,'','#world/f1');

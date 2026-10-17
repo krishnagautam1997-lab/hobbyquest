@@ -16,6 +16,7 @@ A guest-first interest discovery prototype with a founder-selected crimson-neon 
 - A Patek Philippe Nautilus-inspired illustrative Watches cover. Not an official product photograph or brand affiliation.
 - First full scrolling topic world: [Formula 1](https://krishnagautam1997-lab.github.io/hobbyquest/#world/f1), with Conversation Ready and rivalries, people, engineering, and history sections. Eight prepared stories include primary-source links, explicit story-saving, and F1-only notes.
 - Saved stories appear both in the F1 collection and My Atlas, independently of world saves and notes. Direct world links, refresh, Back navigation, unsaved-note draft retention, and refresh warnings are supported.
+- Scroll-linked hero zoom-out/section zoom-in, with no scroll hijacking, plus bolder Space Grotesk headings and labels. Motion off/reduced motion disables scroll effects; reading dialogs and notes remain calm.
 
 ## Future work
 
@@ -33,5 +34,5 @@ See THEME.md for design rules and ASSETS.md for original artwork and generation 
 
 ## Checks for maintainers
 
-The dependency-free Node checks are `node tests/regression.cjs`, `node tests/world.cjs`, `node tests/atmosphere.cjs`, and `node tests/globe.cjs`. They cover storage compatibility, prepared world interactions, routing, independent stories/notes, and motion lifecycle. They do not replace live desktop/mobile visual and actual GPU-rendering checks.
+The dependency-free Node checks are `node tests/regression.cjs`, `node tests/world.cjs`, `node tests/atmosphere.cjs`, `node tests/globe.cjs`, and `node tests/scroll.cjs`. They cover storage compatibility, prepared world interactions, routing, independent stories/notes, and motion lifecycle. They do not replace live desktop/mobile visual and actual GPU-rendering checks.
 

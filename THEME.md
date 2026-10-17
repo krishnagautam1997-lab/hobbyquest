@@ -22,6 +22,8 @@ Sign in opens an honest account preview. No credentials, registration, or cross-
 
 ## Round Earth and first world — 17 October
 
+Founder refinement: Space Grotesk adds an editorial voice to headings and small labels, with larger body text, stronger category accents, and slightly wider cards. Inter stays for long-form reading; the brush hero stays expressive. Scroll-linked child surfaces zoom gently into place on entry and away on exit, while hero copy eases back. Layout parents are never transformed, so sticky navigation and scroll geometry remain stable. No scroll hijacking or hidden-until-JavaScript content; Motion off and reduced motion disable the effect. Notes and story reading stay calm.
+
 The homepage hero now uses a round red Earth instead of the static portrait/planet composite. Its map is spherically projected with a small local WebGL shader, so continents curve and rotate around the globe rather than spinning as a flat disc. A CSS sphere is the fallback. It remains visibly round on mobile, above the hero copy. Respect the saved motion preference and system reduced motion; stop rendering when offscreen, in hidden tabs, and behind dialogs. Cap drawing resolution and avoid a dependency or video player.
 
 The Watches cover is original illustrative Patek Philippe Nautilus artwork, not an official photograph or endorsement. The broad Watches topic remains intact.

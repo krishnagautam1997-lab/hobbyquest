@@ -153,6 +153,7 @@ function renderAtlas() {
 }
 
 function setView(view, updateRoute = true) {
+  document.title = view === 'world' ? 'Formula 1 · HobbyQuest' : view === 'atlas' ? 'My Atlas · HobbyQuest' : 'HobbyQuest · Get into anything';
   $('#discover-view').hidden = view !== 'discover';
   $('#atlas-view').hidden = view !== 'atlas';
   $('#world-view').hidden = view !== 'world';

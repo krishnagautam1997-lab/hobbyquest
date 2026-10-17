@@ -4,6 +4,8 @@ Implemented: a round rotating red Earth on the homepage, Patek Philippe Nautilus
 
 Source files added: world.js, world.css, globe.js. Four optimised WebP assets were added; original assets were retained. Test coverage includes old note compatibility, story/notes isolation, persistence, capacity/storage failures, route/back behaviour, carousel bounds, spherical rotation setup, motion/reduced-motion controls, hidden/offscreen/dialog pause, and WebGL fallback. Live browser checks are part of the release workflow.
 
+Founder refinement in the same session: scroll.js adds restrained scroll-linked hero zoom-out and section zoom-in. Typography now uses Space Grotesk for a bolder display/label voice and larger reading text. Effects respect Motion off/reduced motion, keep layout parents stable, avoid scroll hijacking, and leave reading/notes calm. Mobile spacing separates the round Earth from its caption/headline; the F1 heading scales to narrow screens.
+
 Next increment: improve the world template based on founder feedback, then extend it to a second interest before selecting a zero-cash AI/backend approach. All guest notes and collections are still browser-local. Continue from the existing code; do not reset storage.
 
 # Previous development checkpoint — 16 October 2026
