@@ -6,6 +6,9 @@ A guest-first interest discovery prototype with a founder-selected crimson-neon 
 
 ## Working features
 
+- [Explorer Passport](https://krishnagautam1997-lab.github.io/hobbyquest/#explorer-passport): recent world stamps, real collection counts, and three action-based badges (First World, World Hopper, Collector). Earned badges persist even when a discovery is uncollected. Earlier guest explorations count; no streak pressure or claims of topic mastery.
+- Daily Sparks: 10 received AI replies per UTC day on this browser, shared across its interests. Failed requests do not deduct a local Spark (but may still consume provider capacity). Resets at 00:00 UTC / 4 a.m. Dubai. Exhaustion preserves drafts and access to stories, notes and discoveries. This is a best-effort browser-local experience allowance, not an authenticated per-person quota, global budget cap, health recommendation or availability guarantee. Clearing data/other browsers can bypass it; simultaneous tabs are not transactionally enforced. Shared Workers Free capacity and network rate limits may run out first. No paid refills, new AI model, or billing change.
+
 - Live text AI Guide for virtually any interest, follow-up conversation, and separate browser-local threads. F1 and other topic panels have contextual AI entry buttons. Requests are explicit and require acknowledging the provider/privacy notice. Atlas notes are never automatically sent. The latest 10 exchanges per interest are retained; at most 3 recent exchanges are sent as context. See backend/README.md for configuration and limits.
 
 - Spacious vertical homepage with horizontal topic collections, touch scrolling, arrows, and keyboard scrolling.
@@ -26,6 +29,8 @@ Arbitrary-topic image lookup, secure accounts and guest-data migration, cross-de
 
 ## Guest storage
 
+New additive keys: hobbyquest.sparks.v1 contains only the UTC day and received-reply count; hobbyquest.passport.v1 stores earned badge names. No existing storage records are migrated or removed. Neither is sent to the AI provider. Existing conversations continue using hobbyquest.conversations.v1. If saving fails, new allowances/badges are session-only with visible feedback.
+
 hobbyquest.atlas.v1 stores saved IDs, titles and notes. hobbyquest.progress.v1 stores unique explored IDs and explicitly collected discoveries. hobbyquest.stories.v1 stores explicitly saved story IDs. hobbyquest.motion.v1 stores the motion preference. These are browser-local records, not cloud accounts or GitHub backups. Clearing browser data removes them. Other browsers/devices do not share them. Unavailable storage produces visible session-only feedback. Stories and interest records use separate storage keys; removing a story never clears world notes.
 
 ## Run locally
@@ -36,5 +41,5 @@ See THEME.md for design rules and ASSETS.md for original artwork and generation 
 
 ## Checks for maintainers
 
-The dependency-free Node checks are `node tests/regression.cjs`, `node tests/world.cjs`, `node tests/atmosphere.cjs`, `node tests/globe.cjs`, `node tests/scroll.cjs`, `node tests/chat.cjs`, and `node tests/worker.mjs`. They cover storage compatibility, prepared worlds, routing, separate stories/notes/chats, motion, privacy boundaries, bounded context, safe rendering, retries/errors, backend validation, and rate-limiter/binding guards. They do not replace live desktop/mobile visual and actual provider/GPU checks.
+The dependency-free Node checks are `node tests/regression.cjs`, `node tests/world.cjs`, `node tests/atmosphere.cjs`, `node tests/globe.cjs`, `node tests/scroll.cjs`, `node tests/chat.cjs`, `node tests/worker.mjs`, `node tests/focus.cjs`, and `node tests/explorer.cjs`. They cover storage compatibility, prepared worlds, routing, separate stories/notes/chats, motion, privacy boundaries, bounded context, safe rendering, retries/errors, backend validation, rate-limiter/binding guards, search focus, passport/badge persistence, daily Spark limits, failure deductions, midnight rollover and exhausted draft preservation. They do not replace live desktop/mobile visual and actual provider/GPU checks.
 

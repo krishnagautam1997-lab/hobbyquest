@@ -60,6 +60,7 @@
     article.append(label,body);return article;
   }
   function render() {
+    window.HobbyQuestExplorer?.sparks.refresh();
     const log=el('chat-log'); const messages=history();
     log.replaceChildren(...messages.map(m=>bubble(m.role,m.content)));
     if(pending && pending.id===current?.id) log.append(bubble('user',pending.question),bubble('assistant','Following the thread…'));
@@ -88,6 +89,7 @@
     if(!question || question.length>1000) {el('chat-input').focus();return;}
     if(!el('chat-consent').checked) {el('chat-status').textContent='Please confirm the privacy notice before sending.';el('chat-consent').focus();return;}
     if(!worlds.some(w=>w.id===current.id) && worlds.length>=50) {el('chat-status').textContent='This browser holds 50 interest chats. Reset one you no longer need before starting another.';return;}
+    if(window.HobbyQuestExplorer && !window.HobbyQuestExplorer.sparks.available()) {el('chat-status').textContent='Today’s 10 Sparks are used on this browser. They reset at 00:00 UTC (4 a.m. Dubai). Stories, discoveries and notes are still available.';return;}
     const topic={id:current.id,title:current.title};
     const messages=requestMessages(question);
     pending={...topic,question};el('chat-input').value='';drafts.set(topic.id,'');el('chat-status').textContent='Asking live AI…';render();
@@ -97,6 +99,7 @@
       let data;try {data=await response.json();}catch {throw Error(response.status===429?'rate_limited':'unavailable');}
       if(!response.ok) throw Error(Object.hasOwn(errors,data.error)?data.error:'unavailable');
       if(typeof data.answer!=='string' || !data.answer.trim() || data.answer.length>4000) throw Error('unavailable');
+      window.HobbyQuestExplorer?.sparks.use();
       let world=worlds.find(w=>w.id===topic.id);
       if(!world) {world={...topic,messages:[]};worlds.push(world);}
       world.messages.push({role:'user',content:question},{role:'assistant',content:data.answer.trim()});world.messages=world.messages.slice(-20);

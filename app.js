@@ -306,6 +306,7 @@ function renderProgress() {
   $('#worlds-explored').textContent = progress.visited.length;
   $('#interests-saved').textContent = atlas.length;
   $('#discoveries-collected').textContent = progress.discoveries.length;
+  window.HobbyQuestExplorer?.refresh({visited:progress.visited.map(id => ({id,title:atlas.find(item => item.id === id)?.title || TOPICS.find(item => item.id === id)?.title || id.replace(/^topic:/,'')})),discoveries:progress.discoveries.length});
   $('#explorer-badge').textContent = progress.discoveries.length >= 3 ? '✦ Collector unlocked · 3 discoveries' : progress.visited.length >= 3 ? '✦ World Hopper unlocked · 3 worlds' : progress.visited.length >= 1 ? '✧ First Spark unlocked · Your trail has begun' : 'Your first spark is waiting.';
 }
 function renderDiscoveries() {

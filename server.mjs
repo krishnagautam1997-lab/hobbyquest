@@ -9,6 +9,8 @@ const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-
 files.set('/scroll.js','scroll.js');
 files.set('/chat.js','chat.js');
 files.set('/chat.css','chat.css');
+files.set('/explorer.js','explorer.js');
+files.set('/explorer.css','explorer.css');
 for (const name of ['hero.webp','worlds.webp','rabbit-holes.webp','culture-worlds.webp','earth-red.webp','patek-nautilus.webp','f1-hero.webp','f1-stories.webp']) files.set(`/assets/${name}`,`assets/${name}`);
 const server = http.createServer(async (request,response) => {
   const pathname = new URL(request.url,'http://localhost').pathname;

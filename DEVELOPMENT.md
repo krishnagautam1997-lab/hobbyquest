@@ -1,3 +1,9 @@
+# Explorer Passport and Daily Sparks — 17 October 2026
+
+Added explorer.js/explorer.css: Passport stamps from real existing visited-world records, tangible counters, three permanent action-based badges, and a daily 10-reply browser-local Spark allowance. Chat checks the allowance after privacy consent and before sending; only a valid received answer deducts one. No automatic inference, paid refill, reward for more chat, streak loss, fabricated learning percentage, or recommended-health-limit claim. Stories, discoveries and notes remain available after exhaustion. UI states explain the shared provider ceiling and UTC reset (4 a.m. Dubai). No production model/Worker changes: still @cf/meta/llama-3.1-8b-instruct-fp8.
+
+New additive storage keys are hobbyquest.sparks.v1 and hobbyquest.passport.v1. Existing atlas/progress/stories/conversation records are untouched. This is not secure per-person enforcement or server-side budget protection; data clearing/other browsers can bypass it and concurrent tabs are not transactional. Public-launch abuse protection and authenticated allowances remain future work. All nine dependency-free suites pass, including success-only Spark deduction, privacy/no-request paths, failed provider/network responses, exhausted draft retention, reload and UTC rollover, storage failure, safe world names, persistent badges and old-data isolation. Local preview browser access was unavailable; live visual verification follows the Pages deployment.
+
 # Live text AI increment — 17 October 2026
 
 Search focus refinement: the global input focus outline was drawing a second square pink rectangle inside the rounded homepage search form. The search input now delegates its visible focus cue to the rounded parent via :focus-within. Other controls retain their focus outlines, and forced-colours mode gets an explicit high-contrast parent outline. tests/focus.cjs guards the scoped styling. No guest storage or backend behaviour changes.
