@@ -121,19 +121,20 @@ function getTopic(title, id) {
 function createCard(topic, saved = false) {
   const card = document.createElement('article');
   card.className = 'interest-card';
+  card.dataset.worldId = topic.id;
   const button = document.createElement('button');
   button.className = 'card-open';
   button.type = 'button';
   button.setAttribute('aria-label', `Explore ${topic.title}`);
   // Only fixed markup enters innerHTML. User-provided topic titles always use textContent.
-  button.innerHTML = '<div class="card-art" aria-hidden="true"></div><div class="card-content"><span class="card-category"></span><h3></h3><p></p><div class="card-bottom"><span></span><span aria-hidden="true">↗</span></div></div>';
+  button.innerHTML = '<div class="card-art" aria-hidden="true"></div><span class="world-card-status">◇ UNEXPLORED</span><div class="card-content"><span class="card-category"></span><h3></h3><p></p><div class="card-bottom"><span></span><span aria-hidden="true">↗</span></div></div>';
   const art = button.querySelector('.card-art');
   if (topic.custom) { art.classList.add('art-custom'); art.innerHTML='<span class="custom-cover-label">YOUR OWN WORLD · DECORATIVE COVER</span>'; }
   else art.classList.add(`sheet-${topic.sheet || 'worlds'}`,`tile-${topic.art || 'space'}`);
   button.querySelector('.card-category').textContent = topic.category;
   button.querySelector('h3').textContent = topic.title;
   button.querySelector('.card-content p').textContent = topic.description;
-  button.querySelector('.card-bottom span').textContent = saved ? 'Continue exploring' : 'Follow this curiosity';
+  button.querySelector('.card-bottom span').textContent = saved ? 'Resume your world' : 'Enter this world';
   if (topic.art === 'watches') art.title = 'Illustrative Patek Philippe Nautilus cover. Not an official product photograph.';
   button.addEventListener('click', () => openTopic(topic,saved && atlas.find(item => item.id === topic.id)?.notes ? 'notes' : 'ready'));
   card.append(button);
@@ -307,6 +308,7 @@ function renderProgress() {
   $('#interests-saved').textContent = atlas.length;
   $('#discoveries-collected').textContent = progress.discoveries.length;
   window.HobbyQuestExplorer?.refresh({visited:progress.visited.map(id => ({id,title:atlas.find(item => item.id === id)?.title || TOPICS.find(item => item.id === id)?.title || id.replace(/^topic:/,'')})),discoveries:progress.discoveries.length});
+  window.HobbyQuestGame?.refresh({visited:progress.visited,discoveries:progress.discoveries.length,hasNotes:atlas.some(item=>item.notes.trim().length > 0)});
   $('#explorer-badge').textContent = progress.discoveries.length >= 3 ? '✦ Collector unlocked · 3 discoveries' : progress.visited.length >= 3 ? '✦ World Hopper unlocked · 3 worlds' : progress.visited.length >= 1 ? '✧ First Spark unlocked · Your trail has begun' : 'Your first spark is waiting.';
 }
 function renderDiscoveries() {

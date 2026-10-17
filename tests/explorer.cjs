@@ -27,7 +27,7 @@ async function send(app,text='A test question'){app.el('chat-input').value=text;
  passport(app);assert.equal(app.el('passport-stamps').children[0].textContent,'World 2');assert.equal(app.el('passport-stamps').children[2].textContent,'<img src=x>');assert.ok(app.el('passport-badges').children.every(b=>b.className.includes('unlocked')));
  passport(app,3,0);assert.ok(app.el('passport-badges').children[2].className.includes('unlocked'),'Earned Collector survives uncollect');
  app=boot();passport(app,0,0);assert.ok(app.el('passport-badges').children.every(b=>b.className.includes('unlocked')),'Badges survive reload');
- app.api.sparks.use();assert.equal(app.el('sparks-home-count').textContent,'9 / 10');app=boot();assert.equal(app.el('sparks-chat-count').textContent,'9 / 10 Sparks');
+ app.api.sparks.use();assert.equal(app.el('sparks-home-count').textContent,'9 / 10');assert.equal(app.el('hud-sparks').textContent,'9 / 10');assert.match(app.el('hud-ai').attributes['aria-label'],/9 of 10/);app=boot();assert.equal(app.el('sparks-chat-count').textContent,'9 / 10 Sparks');
  memory.set(KEY,JSON.stringify({day:'2026-10-17',used:10}));app.events.storage({key:KEY});assert.equal(app.el('sparks-exhausted').hidden,false);assert.equal(app.api.sparks.available(),false);
  now='2026-10-18T00:00:00Z';app.api.sparks.refresh();assert.equal(app.el('sparks-home-count').textContent,'10 / 10');
  for(const bad of ['{bad','null','[]',JSON.stringify({day:'2026-10-18',used:-1}),JSON.stringify({day:'2026-10-18',used:400})]){memory.set(KEY,bad);app=boot();assert.equal(app.api.sparks.available(),true);app.api.sparks.use();assert.equal(app.el('sparks-home-count').textContent,'9 / 10');}

@@ -166,8 +166,23 @@
     window.scrollTo({top:0,behavior:'auto'});
   }
 
+  const homeSections = ['explorer-passport','quest-board','discoveries','spotlight'];
+  function navigateSection(id,{focus=true}={}) {
+    if (!homeSections.includes(id)) return;
+    const node = document.getElementById(id);
+    if (!node) return;
+    inWorld = false;
+    setView('discover',false);
+    if(window.location.hash !== '#'+id) window.history.pushState(null,'','#'+id);
+    const align = () => {
+      node.scrollIntoView({behavior:'auto',block:'start'});
+      if (focus) {const heading = node.querySelector('h2');if(heading){heading.setAttribute('tabindex','-1');heading.focus({preventScroll:true});}}
+    };
+    if(typeof requestAnimationFrame === 'function') requestAnimationFrame(align);else align();
+  }
   function route() {
     if (window.location.hash === '#world/f1') {showWorld({focus:false});return;}
+    if(homeSections.includes(window.location.hash.slice(1))) {navigateSection(window.location.hash.slice(1),{focus:false});return;}
     const wasInWorld = inWorld;
     inWorld = false;
     const view = window.location.hash === '#atlas' ? 'atlas' : 'discover';
@@ -219,6 +234,7 @@
   window.addEventListener('beforeunload',event => {if (notesDirty) {event.preventDefault();event.returnValue = '';}});
   window.addEventListener('popstate',route);window.addEventListener('hashchange',route);
   for (const section of ['rivalries','people','engineering','history']) $('#f1-'+section+'-grid').replaceChildren(...stories.filter(story => story.section === section).map(storyCard));
-  window.HobbyQuestWorld = {open,navigateView,refreshSaved};
+  window.addEventListener('load',()=>{if(homeSections.includes(window.location.hash.slice(1))) navigateSection(window.location.hash.slice(1),{focus:false});});
+  window.HobbyQuestWorld = {open,navigateView,refreshSaved,navigateSection};
   refreshSaved();route();
 })();

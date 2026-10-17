@@ -29,6 +29,9 @@
     const remaining = read();
     el('sparks-home-count').textContent = `${remaining} / ${LIMIT}`;
     el('sparks-chat-count').textContent = `${remaining} / ${LIMIT} Sparks`;
+    el('hud-sparks').textContent = `${remaining} / ${LIMIT}`;
+    el('hud-ai').setAttribute('aria-label',`Open AI Guide. ${remaining} of ${LIMIT} daily Sparks remaining on this browser.`);
+    document.querySelectorAll('[data-spark-cell]').forEach((cell,index)=>cell.classList.toggle('charged',index < remaining));
     el('sparks-meter').value = remaining;
     el('sparks-exhausted').hidden = remaining > 0;
     const reset = 'Resets at 00:00 UTC (4 a.m. Dubai).';
