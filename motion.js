@@ -95,7 +95,7 @@
   document.addEventListener('pointermove',event => {
     if (!enabled || !finePointer.matches || event.pointerType === 'touch') return;
     pointer.x = event.clientX;pointer.y = event.clientY;
-    const candidate = event.target instanceof Element ? event.target.closest('.interest-card, .discovery-card, .search-box, .nav-link, .primary-button, .save-button') : null;
+    const candidate = event.target instanceof Element ? event.target.closest('.interest-card, .story-card, .discovery-card, .search-box, .nav-link, .primary-button, .save-button') : null;
     if (surface !== candidate) {resetSurface();surface = candidate;}
     if (pointerFrame) return;
     pointerFrame = requestAnimationFrame(() => {

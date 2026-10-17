@@ -1,4 +1,12 @@
-# HobbyQuest development checkpoint — 16 October 2026
+# Session update — 17 October 2026
+
+Implemented: a round rotating red Earth on the homepage, Patek Philippe Nautilus illustrative watch cover, and the first full Formula 1 world at `#world/f1`. The world contains Conversation Ready, rivalries, people, engineering, and history; eight prepared source-linked stories; independent story saving in the world and Atlas; separate F1 notes with legacy-ID preservation; browser Back/deep links; draft retention and unsaved-refresh warnings. No backend, paid API, live AI, official product photograph, or cloud sync was added.
+
+Source files added: world.js, world.css, globe.js. Four optimised WebP assets were added; original assets were retained. Test coverage includes old note compatibility, story/notes isolation, persistence, capacity/storage failures, route/back behaviour, carousel bounds, spherical rotation setup, motion/reduced-motion controls, hidden/offscreen/dialog pause, and WebGL fallback. Live browser checks are part of the release workflow.
+
+Next increment: improve the world template based on founder feedback, then extend it to a second interest before selecting a zero-cash AI/backend approach. All guest notes and collections are still browser-local. Continue from the existing code; do not reset storage.
+
+# Previous development checkpoint — 16 October 2026
 
 ## Saved and live
 
@@ -45,4 +53,3 @@ Choose a genuinely zero-cash AI path with explicit limitations; design secure op
 Automated checks passed for all 24 cards, new aliases/guides, older Football/K-pop/perfume note compatibility, per-interest notes, progress persistence, safe text rendering, storage failures, carousel controls, and motion preferences. Live desktop/mobile checks confirmed no page-wide horizontal overflow, updated typography, moving ambient layers, motion-off behaviour, and paused animation behind an open dialog. Deployment succeeded.
 
 Continue from this checkpoint; do not rebuild the homepage or reset storage.
-

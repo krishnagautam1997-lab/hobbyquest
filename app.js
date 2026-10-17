@@ -134,7 +134,8 @@ function createCard(topic, saved = false) {
   button.querySelector('h3').textContent = topic.title;
   button.querySelector('.card-content p').textContent = topic.description;
   button.querySelector('.card-bottom span').textContent = saved ? 'Continue exploring' : 'Follow this curiosity';
-  button.addEventListener('click', () => { openTopic(topic); if (saved && atlas.find(item => item.id === topic.id)?.notes) selectTab('notes-tab'); });
+  if (topic.art === 'watches') art.title = 'Illustrative Patek Philippe Nautilus cover. Not an official product photograph.';
+  button.addEventListener('click', () => openTopic(topic,saved && atlas.find(item => item.id === topic.id)?.notes ? 'notes' : 'ready'));
   card.append(button);
   return card;
 }
@@ -148,17 +149,20 @@ function renderAtlas() {
   $('#saved-preview-empty').hidden = atlas.length > 0;
   $('#saved-preview-count').textContent = atlas.length ? `${atlas.length} saved ${atlas.length === 1 ? 'world' : 'worlds'}. Pick up where you left off.` : 'Your next favourite thing deserves a place here.';
   renderProgress();
+  if (window.HobbyQuestWorld) window.HobbyQuestWorld.refreshSaved();
 }
 
-function setView(view) {
+function setView(view, updateRoute = true) {
   $('#discover-view').hidden = view !== 'discover';
   $('#atlas-view').hidden = view !== 'atlas';
+  $('#world-view').hidden = view !== 'world';
   document.querySelectorAll('[data-view]').forEach(button => {
-    const active = button.dataset.view === view;
+    const active = button.dataset.view === view || (view === 'world' && button.dataset.view === 'discover');
     button.classList.toggle('active', active);
     if (active) button.setAttribute('aria-current','page');
     else button.removeAttribute('aria-current');
   });
+  if (updateRoute && window.HobbyQuestWorld) window.HobbyQuestWorld.navigateView(view);
 }
 
 function selectTab(id, focus = false) {
@@ -177,8 +181,16 @@ function updateSaveButton() {
   $('#save-interest').setAttribute('aria-pressed',String(saved));
 }
 
-function openTopic(topic) {
+function recordVisit(id) {
+  if (!progress.visited.includes(id)) { progress.visited.push(id); persistProgress(); renderProgress(); }
+}
+
+function openTopic(topic, startAt = 'ready') {
   topic = getTopic(topic.title,topic.id);
+  if (window.HobbyQuestWorld && (topic.id === 'f1' || TOPICS.find(item => item.id === 'f1').aliases.some(name => name.toLowerCase() === topic.title.toLowerCase()) || topic.title === 'Formula 1')) {
+    window.HobbyQuestWorld.open({notes:startAt === 'notes'});
+    return;
+  }
   activeTopic = topic;
   $('#dialog-status').hidden = true;
   $('#dialog-status').textContent = '';
@@ -197,9 +209,9 @@ function openTopic(topic) {
     return item;
   }));
   updateSaveButton();
-  selectTab('ready-tab');
+  selectTab(startAt === 'notes' ? 'notes-tab' : 'ready-tab');
   $('#topic-dialog').showModal();
-  if (!progress.visited.includes(topic.id)) { progress.visited.push(topic.id); persistProgress(); renderProgress(); }
+  recordVisit(topic.id);
 }
 
 $('#interest-grid').replaceChildren(...SPOTLIGHT.map(id => createCard(getTopic(TOPICS.find(topic => topic.id === id).title,id))));
@@ -319,5 +331,21 @@ function initCarousels() {
     if(event.target!==row || !['ArrowLeft','ArrowRight'].includes(event.key))return;
     event.preventDefault();row.scrollBy({left:event.key==='ArrowRight'?240:-240,behavior:'auto'});
   }));
+  document.querySelectorAll('.carousel').forEach(row => row.addEventListener('scroll',refreshCarouselControls,{passive:true}));
+  if (typeof ResizeObserver !== 'undefined') {
+    const observer = new ResizeObserver(refreshCarouselControls);
+    document.querySelectorAll('.carousel').forEach(row => observer.observe(row));
+  }
+  window.addEventListener?.('resize',refreshCarouselControls,{passive:true});
+  refreshCarouselControls();
+}
+
+function refreshCarouselControls() {
+  document.querySelectorAll('[data-carousel]').forEach(button => {
+    const row = document.getElementById(button.dataset.carousel);
+    if (!row || typeof row.clientWidth !== 'number' || row.clientWidth === 0) return;
+    const end = row.scrollWidth - row.clientWidth;
+    button.disabled = end <= 2 || (Number(button.dataset.direction) < 0 ? row.scrollLeft <= 2 : row.scrollLeft >= end - 2);
+  });
 }
 
