@@ -1,4 +1,14 @@
-# Session update — 17 October 2026
+# Live text AI increment — 17 October 2026
+
+Added chat.js/chat.css and a labelled AI Guide dialog, contextual F1 and topic entry buttons, per-interest browser-local chat history, explicit transmission acknowledgement, bounded recent-message context, failure/retry drafts, plain-text response rendering, and independent confirmed chat reset. Saved atlas notes and other threads are never included in requests. Existing storage schemas remain intact. Text only; no accounts, cloud memory, live web search, photo, or voice.
+
+Backend source and configuration are in backend/. The founder created a Cloudflare account, enabled the AI binding, and retained Workers Free. A separate hobbyquest-ai Worker was deployed through the dashboard, with AI and CHAT_LIMITER bindings (5 requests/60 seconds, namespace 1001). No payment setup, key in frontend, paid model, gateway, or automatic fallback. Frontend deployment is GitHub Pages from main/root. Worker deployments are currently separate/manual; source is backed up in this GitHub repo.
+
+Code release: 038571dad16267eeed250f146df872c75d9d3191. All seven deterministic existing/new suites pass. Production F1 inference, a contextual follow-up, independent Astronomy inference, and restoration of the saved F1 conversation after refresh succeeded. Desktop and 390px mobile layouts were inspected; a follow-up CSS refinement keeps the close control sticky and allows the F1 top bar to wrap. Free quota and rate limits are account-wide/provider-limited resources, not unlimited per-user entitlements. CORS is not authentication. Larger public launch needs stronger abuse protection and fair-use controls.
+
+Next increment: collect founder feedback on real AI answer quality and the chat experience; then add authenticated memory only after choosing a zero-cash service and explicit guest migration. Do not enable paid billing or automatically send existing notes. Continue the existing app rather than rebuilding.
+
+# Earlier visual/world increment — 17 October 2026
 
 Implemented: a round rotating red Earth on the homepage, Patek Philippe Nautilus illustrative watch cover, and the first full Formula 1 world at `#world/f1`. The world contains Conversation Ready, rivalries, people, engineering, and history; eight prepared source-linked stories; independent story saving in the world and Atlas; separate F1 notes with legacy-ID preservation; browser Back/deep links; draft retention and unsaved-refresh warnings. No backend, paid API, live AI, official product photograph, or cloud sync was added.
 

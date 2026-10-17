@@ -2,9 +2,11 @@
 
 [Open the live prototype](https://krishnagautam1997-lab.github.io/hobbyquest/)
 
-A guest-first interest discovery prototype with a founder-selected crimson-neon identity. Source: krishnagautam1997-lab/hobbyquest. GitHub Pages publishes from main/root. No paid API or service is connected.
+A guest-first interest discovery prototype with a founder-selected crimson-neon identity. Source: krishnagautam1997-lab/hobbyquest. GitHub Pages publishes from main/root. Live text AI uses a separate Cloudflare Worker on Workers Free. No paid plan, provider fallback, or browser API key is enabled.
 
 ## Working features
+
+- Live text AI Guide for virtually any interest, follow-up conversation, and separate browser-local threads. F1 and other topic panels have contextual AI entry buttons. Requests are explicit and require acknowledging the provider/privacy notice. Atlas notes are never automatically sent. The latest 10 exchanges per interest are retained; at most 3 recent exchanges are sent as context. See backend/README.md for configuration and limits.
 
 - Spacious vertical homepage with horizontal topic collections, touch scrolling, arrows, and keyboard scrolling.
 - Any-topic entry. Curated topics receive original images and example guides. Unknown topics receive a labelled decorative cover and reflection framework.
@@ -20,7 +22,7 @@ A guest-first interest discovery prototype with a founder-selected crimson-neon 
 
 ## Future work
 
-Live text AI, arbitrary-topic image lookup, secure accounts and guest-data migration, cross-device interest memories, scrolling world pages for additional topics, photo and voice input. Current guides are prepared examples, not live AI responses or race feeds.
+Arbitrary-topic image lookup, secure accounts and guest-data migration, cross-device interest memories, scrolling world pages for additional topics, photo and voice input. Current story guides remain prepared examples. The separately labelled AI Guide generates live text but has no web search or live race feed and can be inaccurate or outdated.
 
 ## Guest storage
 
@@ -34,5 +36,5 @@ See THEME.md for design rules and ASSETS.md for original artwork and generation 
 
 ## Checks for maintainers
 
-The dependency-free Node checks are `node tests/regression.cjs`, `node tests/world.cjs`, `node tests/atmosphere.cjs`, `node tests/globe.cjs`, and `node tests/scroll.cjs`. They cover storage compatibility, prepared world interactions, routing, independent stories/notes, and motion lifecycle. They do not replace live desktop/mobile visual and actual GPU-rendering checks.
+The dependency-free Node checks are `node tests/regression.cjs`, `node tests/world.cjs`, `node tests/atmosphere.cjs`, `node tests/globe.cjs`, `node tests/scroll.cjs`, `node tests/chat.cjs`, and `node tests/worker.mjs`. They cover storage compatibility, prepared worlds, routing, separate stories/notes/chats, motion, privacy boundaries, bounded context, safe rendering, retries/errors, backend validation, and rate-limiter/binding guards. They do not replace live desktop/mobile visual and actual provider/GPU checks.
 
